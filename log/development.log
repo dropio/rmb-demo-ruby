@@ -1,0 +1,805 @@
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:13:08) [GET]
+Rendering get_drop/index
+Completed in 6ms (View: 5, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:19:34) [GET]
+
+NameError (uninitialized constant GetDropController::Dropio):
+  app/controllers/get_drop_controller.rb:3
+
+Rendered rescues/_trace (33.3ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:20:40) [GET]
+
+NameError (undefined local variable or method `dropio' for GetDropController:Class):
+  app/controllers/get_drop_controller.rb:3
+
+Rendered rescues/_trace (31.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:20:54) [GET]
+
+NameError (uninitialized constant GetDropController::Dropio):
+  app/controllers/get_drop_controller.rb:3
+
+Rendered rescues/_trace (33.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:22:30) [GET]
+Rendering get_drop/index
+
+ActionView::TemplateError (uninitialized constant ActionView::Base::CompiledTemplates::GetDropInfo) on line #3 of app/views/get_drop/index.rhtml:
+1: <div>
+2: 	Test view<br />
+3: 	<%= GetDropInfo %>
+4: </div>
+
+    app/views/get_drop/index.rhtml:3:in `_run_rhtml_app47views47get_drop47index46rhtml'
+
+Rendered rescues/_trace (42.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:23:25) [GET]
+Rendering get_drop/index
+
+ActionView::TemplateError (undefined local variable or method `get_drop_info' for #<ActionView::Base:0x1042799f8>) on line #3 of app/views/get_drop/index.rhtml:
+1: <div>
+2: 	Test view<br />
+3: 	<%= get_drop_info %>
+4: </div>
+
+    app/views/get_drop/index.rhtml:3:in `_run_rhtml_app47views47get_drop47index46rhtml'
+
+Rendered rescues/_trace (42.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:26:24) [GET]
+Rendering get_drop/index
+
+ActionView::TemplateError (undefined method `get_drop_info' for nil:NilClass) on line #3 of app/views/get_drop/index.rhtml:
+1: <div>
+2: 	Test view<br />
+3: 	<%= @GetDropController.get_drop_info %>
+4: </div>
+
+    app/views/get_drop/index.rhtml:3:in `_run_rhtml_app47views47get_drop47index46rhtml'
+
+Rendered rescues/_trace (40.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:26:35) [GET]
+Rendering get_drop/index
+
+ActionView::TemplateError (undefined method `get_drop_info' for GetDropController:Class) on line #3 of app/views/get_drop/index.rhtml:
+1: <div>
+2: 	Test view<br />
+3: 	<%= GetDropController.get_drop_info %>
+4: </div>
+
+    app/views/get_drop/index.rhtml:3:in `_run_rhtml_app47views47get_drop47index46rhtml'
+
+Rendered rescues/_trace (112.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:29:53) [GET]
+
+NameError (uninitialized constant GetDropController::Drop):
+  app/controllers/get_drop_controller.rb:6
+
+Rendered rescues/_trace (33.7ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:30:28) [GET]
+
+NameError (uninitialized constant GetDropController::Drop):
+  app/controllers/get_drop_controller.rb:6
+
+Rendered rescues/_trace (32.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:30:45) [GET]
+
+NameError (uninitialized constant GetDropController::Drop):
+  app/controllers/get_drop_controller.rb:6
+
+Rendered rescues/_trace (98.3ms)
+Rendered rescues/_request_and_response (2.1ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:34:47) [GET]
+
+Dropio::AuthorizationError (The api_key is invalid.):
+  dropio (1.7.1) lib/dropio/client.rb:229:in `parse_response'
+  dropio (1.7.1) lib/dropio/client.rb:209:in `handle'
+  dropio (1.7.1) lib/dropio/client.rb:9:in `drop'
+  dropio (1.7.1) lib/dropio/drop.rb:20:in `find'
+  app/controllers/get_drop_controller.rb:6
+
+Rendered rescues/_trace (35.9ms)
+Rendered rescues/_request_and_response (1.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:35:48) [GET]
+
+Dropio::AuthorizationError (The api_key is invalid.):
+  dropio (1.7.1) lib/dropio/client.rb:229:in `parse_response'
+  dropio (1.7.1) lib/dropio/client.rb:209:in `handle'
+  dropio (1.7.1) lib/dropio/client.rb:9:in `drop'
+  dropio (1.7.1) lib/dropio/drop.rb:20:in `find'
+  app/controllers/get_drop_controller.rb:6
+
+Rendered rescues/_trace (34.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:36:08) [GET]
+
+Dropio::AuthorizationError (The api_key is invalid.):
+  dropio (1.7.1) lib/dropio/client.rb:229:in `parse_response'
+  dropio (1.7.1) lib/dropio/client.rb:209:in `handle'
+  dropio (1.7.1) lib/dropio/client.rb:9:in `drop'
+  dropio (1.7.1) lib/dropio/drop.rb:20:in `find'
+  app/controllers/get_drop_controller.rb:6
+
+Rendered rescues/_trace (107.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:36:16) [GET]
+
+Dropio::AuthorizationError (The api_key is invalid.):
+  dropio (1.7.1) lib/dropio/client.rb:229:in `parse_response'
+  dropio (1.7.1) lib/dropio/client.rb:209:in `handle'
+  dropio (1.7.1) lib/dropio/client.rb:9:in `drop'
+  dropio (1.7.1) lib/dropio/drop.rb:20:in `find'
+  app/controllers/get_drop_controller.rb:6
+
+Rendered rescues/_trace (33.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:37:01) [GET]
+
+Dropio::AuthorizationError (The api_key is invalid.):
+  dropio (1.7.1) lib/dropio/client.rb:229:in `parse_response'
+  dropio (1.7.1) lib/dropio/client.rb:209:in `handle'
+  dropio (1.7.1) lib/dropio/client.rb:9:in `drop'
+  dropio (1.7.1) lib/dropio/drop.rb:20:in `find'
+  app/controllers/get_drop_controller.rb:6
+
+Rendered rescues/_trace (109.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:37:51) [GET]
+
+Dropio::AuthorizationError (The api_key is invalid.):
+  dropio (1.7.1) lib/dropio/client.rb:229:in `parse_response'
+  dropio (1.7.1) lib/dropio/client.rb:209:in `handle'
+  dropio (1.7.1) lib/dropio/client.rb:9:in `drop'
+  dropio (1.7.1) lib/dropio/drop.rb:20:in `find'
+  app/controllers/get_drop_controller.rb:6
+
+Rendered rescues/_trace (34.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:37:54) [GET]
+
+Dropio::AuthorizationError (The api_key is invalid.):
+  dropio (1.7.1) lib/dropio/client.rb:229:in `parse_response'
+  dropio (1.7.1) lib/dropio/client.rb:209:in `handle'
+  dropio (1.7.1) lib/dropio/client.rb:9:in `drop'
+  dropio (1.7.1) lib/dropio/drop.rb:20:in `find'
+  app/controllers/get_drop_controller.rb:6
+
+Rendered rescues/_trace (34.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:38:03) [GET]
+
+Dropio::AuthorizationError (The api_key is invalid.):
+  dropio (1.7.1) lib/dropio/client.rb:229:in `parse_response'
+  dropio (1.7.1) lib/dropio/client.rb:209:in `handle'
+  dropio (1.7.1) lib/dropio/client.rb:9:in `drop'
+  dropio (1.7.1) lib/dropio/drop.rb:20:in `find'
+  app/controllers/get_drop_controller.rb:5
+
+Rendered rescues/_trace (107.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:38:20) [GET]
+
+NameError (uninitialized constant GetDropController::Dropio):
+  app/controllers/get_drop_controller.rb:4
+
+Rendered rescues/_trace (33.0ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:38:31) [GET]
+Rendering get_drop/index
+Completed in 66ms (View: 64, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:38:44) [GET]
+Rendering get_drop/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:39:04) [GET]
+Rendering get_drop/index
+Completed in 7ms (View: 5, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:39:40) [GET]
+
+NameError (undefined local variable or method `drop' for GetDropController:Class):
+  app/controllers/get_drop_controller.rb:8
+
+Rendered rescues/_trace (99.0ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:39:51) [GET]
+
+NameError (undefined local variable or method `drop' for GetDropController:Class):
+  app/controllers/get_drop_controller.rb:8
+
+Rendered rescues/_trace (32.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:40:03) [GET]
+
+NameError (undefined local variable or method `drop' for GetDropController:Class):
+  app/controllers/get_drop_controller.rb:8
+
+Rendered rescues/_trace (96.5ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:40:45) [GET]
+
+NoMethodError (undefined method `h' for GetDropController:Class):
+  app/controllers/get_drop_controller.rb:7
+
+Rendered rescues/_trace (32.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:41:09) [GET]
+Rendering get_drop/index
+Completed in 6ms (View: 4, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:42:03) [GET]
+Rendering get_drop/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:42:23) [GET]
+Rendering get_drop/index
+
+ActionView::TemplateError (undefined method `drop' for Dropio:Module) on line #3 of app/views/get_drop/index.rhtml:
+1: <div>
+2: 	Test view<br />
+3: 	<%= h(Dropio::drop.inspect) %>
+4: </div>
+
+    app/views/get_drop/index.rhtml:3:in `_run_rhtml_app47views47get_drop47index46rhtml'
+
+Rendered rescues/_trace (40.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:45:02) [GET]
+Rendering get_drop/index
+Completed in 5ms (View: 4, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:45:47) [GET]
+Rendering get_drop/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:45:48) [GET]
+Rendering get_drop/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:45:49) [GET]
+Rendering get_drop/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:46:54) [GET]
+Rendering get_drop/index
+Completed in 5ms (View: 4, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:46:55) [GET]
+Rendering get_drop/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:47:55) [GET]
+
+ActionController::RoutingError (No route matches "/GetDropController/get_drop/" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing GetDropController#get_drop (for 127.0.0.1 at 2010-02-13 17:48:04) [GET]
+
+ActionView::MissingTemplate (Missing template get_drop/get_drop.erb in view path app/views):
+  
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:48:09) [GET]
+Rendering get_drop/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:48:43) [GET]
+Rendering get_drop/index
+
+ActionView::TemplateError (undefined local variable or method `get_it' for #<ActionView::Base:0x1043400f8>) on line #3 of app/views/get_drop/index.rhtml:
+1: <div>
+2: 	Test view<br />
+3: 	<% get_it %>
+4: 	<%= h(@nerf.inspect) %>
+5: </div>
+
+    app/views/get_drop/index.rhtml:3:in `_run_rhtml_app47views47get_drop47index46rhtml'
+
+Rendered rescues/_trace (39.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:48:52) [GET]
+Rendering get_drop/index
+
+ActionView::TemplateError (undefined local variable or method `get_it' for #<ActionView::Base:0x10405ad20>) on line #3 of app/views/get_drop/index.rhtml:
+1: <div>
+2: 	Test view<br />
+3: 	<% get_it %>
+4: 	<%= h(@nerf.inspect) %>
+5: </div>
+
+    app/views/get_drop/index.rhtml:3:in `_run_rhtml_app47views47get_drop47index46rhtml'
+
+Rendered rescues/_trace (41.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:49:02) [GET]
+Rendering get_drop/index
+
+ActionView::TemplateError (undefined local variable or method `get_it' for #<ActionView::Base:0x104088090>) on line #3 of app/views/get_drop/index.rhtml:
+1: <div>
+2: 	Test view<br />
+3: 	<% get_it %>
+4: 	<%= h(@nerf.inspect) %>
+5: </div>
+
+    app/views/get_drop/index.rhtml:3:in `_run_rhtml_app47views47get_drop47index46rhtml'
+
+Rendered rescues/_trace (105.1ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:49:16) [GET]
+Rendering get_drop/index
+
+ActionView::TemplateError (undefined local variable or method `get_drop' for #<ActionView::Base:0x10434c808>) on line #3 of app/views/get_drop/index.rhtml:
+1: <div>
+2: 	Test view<br />
+3: 	<% get_drop %>
+4: 	<%= h(@nerf.inspect) %>
+5: </div>
+
+    app/views/get_drop/index.rhtml:3:in `_run_rhtml_app47views47get_drop47index46rhtml'
+
+Rendered rescues/_trace (40.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:49:21) [GET]
+Rendering get_drop/index
+Completed in 5ms (View: 4, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:49:22) [GET]
+Rendering get_drop/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:49:35) [GET]
+Rendering get_drop/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:50:30) [GET]
+Rendering get_drop/index
+Completed in 5ms (View: 4, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#hello (for 127.0.0.1 at 2010-02-13 17:50:37) [GET]
+
+ActionView::MissingTemplate (Missing template get_drop/hello.erb in view path app/views):
+  
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#hello (for 127.0.0.1 at 2010-02-13 17:50:57) [GET]
+Rendering get_drop/hello
+Completed in 1049ms (View: 5, DB: 0) | 200 OK [http://localhost/get_drop/hello]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:51:18) [GET]
+Rendering get_drop/index
+Completed in 1703ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:51:45) [GET]
+Rendering get_drop/index
+Completed in 1732ms (View: 5, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:55:07) [GET]
+Rendering get_drop/index
+Completed in 2141ms (View: 4, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:55:24) [GET]
+Rendering get_drop/index
+Completed in 2043ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 17:56:28) [GET]
+
+SyntaxError (/Users/glitch/src/clienttest/app/controllers/get_drop_controller.rb:10: syntax error, unexpected tIVAR):
+  
+
+Rendered rescues/_trace (30.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:56:34) [GET]
+Rendering get_drop/index
+Completed in 1213ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:57:03) [GET]
+Rendering get_drop/index
+Completed in 1899ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:57:13) [GET]
+Rendering get_drop/index
+Completed in 1099ms (View: 6, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:57:35) [GET]
+Rendering get_drop/index
+
+ActionView::TemplateError (undefined local variable or method `drop' for #<ActionView::Base:0x104004d58>) on line #5 of app/views/get_drop/index.rhtml:
+2: 	Test view<br />
+3: 	<%= h(@keys.inspect) %>
+4: 	<%= h(@howmany.inspect) %>
+5: 	<%= h(drop.inspect) %>
+6: </div>
+
+    app/views/get_drop/index.rhtml:5:in `_run_rhtml_app47views47get_drop47index46rhtml'
+
+Rendered rescues/_trace (40.9ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:57:42) [GET]
+Rendering get_drop/index
+Completed in 1433ms (View: 5, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 17:57:54) [GET]
+Rendering get_drop/index
+Completed in 2314ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:00:19) [GET]
+Rendering get_drop/index
+Completed in 2104ms (View: 5, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:04:16) [GET]
+Rendering get_drop/index
+Completed in 1196ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:05:36) [GET]
+
+NoMethodError (undefined method `each' for 1:Fixnum):
+  app/controllers/get_drop_controller.rb:14:in `index'
+
+Rendered rescues/_trace (34.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-13 18:05:59) [GET]
+
+SyntaxError (/Users/glitch/src/clienttest/app/controllers/get_drop_controller.rb:18: syntax error, unexpected '\n', expecting tCOLON2 or '[' or '.'):
+  
+
+Rendered rescues/_trace (30.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:07:48) [GET]
+
+NoMethodError (undefined method `each' for 1:Fixnum):
+  app/controllers/get_drop_controller.rb:14:in `index'
+
+Rendered rescues/_trace (105.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:08:19) [GET]
+
+NoMethodError (undefined method `each' for 5:Fixnum):
+  app/controllers/get_drop_controller.rb:15:in `index'
+
+Rendered rescues/_trace (32.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:10:25) [GET]
+
+NoMethodError (undefined method `each' for 1:Fixnum):
+  app/controllers/get_drop_controller.rb:14:in `index'
+
+Rendered rescues/_trace (108.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:11:19) [GET]
+
+Dropio::ServerError (There was a problem connecting to Drop.io.):
+  dropio (1.7.1) lib/dropio/client.rb:231:in `parse_response'
+  dropio (1.7.1) lib/dropio/client.rb:209:in `handle'
+  dropio (1.7.1) lib/dropio/client.rb:85:in `assets'
+  dropio (1.7.1) lib/dropio/drop.rb:15:in `assets'
+  app/controllers/get_drop_controller.rb:15:in `index'
+  app/controllers/get_drop_controller.rb:14:in `times'
+  app/controllers/get_drop_controller.rb:14:in `index'
+
+Rendered rescues/_trace (37.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:11:29) [GET]
+
+Dropio::ServerError (There was a problem connecting to Drop.io.):
+  dropio (1.7.1) lib/dropio/client.rb:231:in `parse_response'
+  dropio (1.7.1) lib/dropio/client.rb:209:in `handle'
+  dropio (1.7.1) lib/dropio/client.rb:85:in `assets'
+  dropio (1.7.1) lib/dropio/drop.rb:15:in `assets'
+  app/controllers/get_drop_controller.rb:15:in `index'
+  app/controllers/get_drop_controller.rb:14:in `times'
+  app/controllers/get_drop_controller.rb:14:in `index'
+
+Rendered rescues/_trace (34.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:11:59) [GET]
+Rendering get_drop/index
+Completed in 3209ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:12:26) [GET]
+
+Dropio::ServerError (There was a problem connecting to Drop.io.):
+  dropio (1.7.1) lib/dropio/client.rb:231:in `parse_response'
+  dropio (1.7.1) lib/dropio/client.rb:209:in `handle'
+  dropio (1.7.1) lib/dropio/client.rb:85:in `assets'
+  dropio (1.7.1) lib/dropio/drop.rb:15:in `assets'
+  app/controllers/get_drop_controller.rb:15:in `index'
+  app/controllers/get_drop_controller.rb:14:in `times'
+  app/controllers/get_drop_controller.rb:14:in `index'
+
+Rendered rescues/_trace (35.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:14:23) [GET]
+Rendering get_drop/index
+Completed in 1316ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:14:36) [GET]
+
+Dropio::ServerError (There was a problem connecting to Drop.io.):
+  dropio (1.7.1) lib/dropio/client.rb:231:in `parse_response'
+  dropio (1.7.1) lib/dropio/client.rb:209:in `handle'
+  dropio (1.7.1) lib/dropio/client.rb:85:in `assets'
+  dropio (1.7.1) lib/dropio/drop.rb:15:in `assets'
+  app/controllers/get_drop_controller.rb:15:in `index'
+  app/controllers/get_drop_controller.rb:14:in `times'
+  app/controllers/get_drop_controller.rb:14:in `index'
+
+Rendered rescues/_trace (107.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:14:46) [GET]
+
+Dropio::ServerError (There was a problem connecting to Drop.io.):
+  dropio (1.7.1) lib/dropio/client.rb:231:in `parse_response'
+  dropio (1.7.1) lib/dropio/client.rb:209:in `handle'
+  dropio (1.7.1) lib/dropio/client.rb:85:in `assets'
+  dropio (1.7.1) lib/dropio/drop.rb:15:in `assets'
+  app/controllers/get_drop_controller.rb:15:in `index'
+  app/controllers/get_drop_controller.rb:14:in `times'
+  app/controllers/get_drop_controller.rb:14:in `index'
+
+Rendered rescues/_trace (37.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:15:24) [GET]
+
+Dropio::ServerError (There was a problem connecting to Drop.io.):
+  dropio (1.7.1) lib/dropio/client.rb:231:in `parse_response'
+  dropio (1.7.1) lib/dropio/client.rb:209:in `handle'
+  dropio (1.7.1) lib/dropio/client.rb:85:in `assets'
+  dropio (1.7.1) lib/dropio/drop.rb:15:in `assets'
+  app/controllers/get_drop_controller.rb:15:in `index'
+  app/controllers/get_drop_controller.rb:14:in `times'
+  app/controllers/get_drop_controller.rb:14:in `index'
+
+Rendered rescues/_trace (35.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:15:40) [GET]
+Rendering get_drop/index
+Completed in 2363ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:15:57) [GET]
+Rendering get_drop/index
+Completed in 1658ms (View: 5, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:16:46) [GET]
+Rendering get_drop/index
+Completed in 1464ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:17:00) [GET]
+Rendering get_drop/index
+Completed in 1918ms (View: 4, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:24:36) [GET]
+Rendering get_drop/index
+Completed in 1865ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:25:18) [GET]
+Rendering get_drop/index
+Completed in 1319ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:26:29) [GET]
+Rendering get_drop/index
+Completed in 2456ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 18:27:35) [GET]
+Rendering get_drop/index
+Completed in 3474ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-02-13 19:10:14) [GET]
+Rendering get_drop/index
+Completed in 3548ms (View: 1, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-03-01 18:41:30) [POST]
+
+ActionController::RoutingError (No route matches "/http-bind" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-03-01 18:42:07) [GET]
+Rendering get_drop/index
+Completed in 412ms (View: 30, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-03-01 18:59:59) [GET]
+Rendering get_drop/index
+Completed in 1230ms (View: 57, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-03-01 19:05:24) [GET]
+Rendering get_drop/index
+Completed in 288ms (View: 6, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-03-01 22:05:24) [GET]
+Rendering get_drop/index
+Completed in 517ms (View: 7, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-03-01 22:05:26) [GET]
+Rendering get_drop/index
+Completed in 473ms (View: 2, DB: 0) | 200 OK [http://localhost/get_drop/]
+
+
+Processing GetDropController#index (for 127.0.0.1 at 2010-03-01 22:14:33) [GET]
+Rendering get_drop/index
+Completed in 409ms (View: 2, DB: 0) | 200 OK [http://localhost/get_drop/]
