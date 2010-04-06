@@ -24,7 +24,7 @@ Dropio::Config.base_url = "http://drop.io"
 Dropio::Config.api_url = "http://api.drop.io"
 Dropio::Config.upload_url = "http://assets.drop.io/upload"
 Dropio::Config.version = "3.0"
-Dropio::Config.debug = false
+Dropio::Config.debug = true
 
 require 'dropio/api'
 require 'dropio/client'
