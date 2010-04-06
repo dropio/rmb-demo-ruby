@@ -2,9 +2,9 @@ class GetDropController < ApplicationController
   
   require 'dropio' 
   
-  Dropio::Config.api_key = "72851f00745cdfd0e87207219f3106bcc9927f66"
+  Dropio::Config.api_key = "54651d667328449f5b98a0566323b4113801a8e5"
   def index
-    drop = Dropio::Drop.find("fzf2n2l")
+    drop = Dropio::Drop.find("splayfist")
      @drop = drop
      @howmany = drop.asset_count
     if false 
