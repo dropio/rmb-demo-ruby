@@ -87,11 +87,11 @@ class Dropio::Api
   end
 
   def assets(drop_name, page = 1, order = :oldest, token = nil)
-    self.class.get("/drops/#{drop_name}/assets", :query => {:token => token, :page => page, :order => order.to_s, :show_pagination_details => true})
+    self.class.get("/drops/#{drop_name}/assets", :query => {:version => "3.0", :token => token, :page => page, :order => order.to_s, :show_pagination_details => true})
   end
 
   def asset(drop_name, asset_name, token = nil)
-    self.class.get("/drops/#{drop_name}/assets/#{asset_name}", :query => {:token => token})
+    self.class.get("/drops/#{drop_name}/assets/#{asset_name}", :query => {:version => "3.0",:token => token})
   end
   
   def generate_asset_url(drop_name, asset_name, token)
