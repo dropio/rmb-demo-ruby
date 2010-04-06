@@ -5,10 +5,10 @@
 	Test view<br />
 	<%= h(@drop.inspect) %>
 	<%= h(@howmany.inspect) %>
-	<%= h(@drop.assets(1).inspect) %>
-	<%# @drop.assets.each do |a| %>
-	 	<br /><br />Asset: <%# h(a.inspect) %>
-	<%# end %>
+	<%# h(@drop.assets(1).inspect) %>
+	<% @drop.assets.each do |a| %>
+	 	<br /><br />Asset: <% h(a.name) %>
+	<% end %>
 	<%# h(@keys.inspect) %><br /><br />
 	<br />
 	<%# h(@response.inspect)%>
