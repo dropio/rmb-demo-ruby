@@ -5,7 +5,7 @@
 	Test view<br />
 	<%= h(@drop.inspect) %>
 	<%= h(@howmany.inspect) %>
-	<% drop.assets.each do |a| %>
+	<% @drop.assets.each do |a| %>
 	 	<br /><br />Asset: <%= h(a.inspect) %>
 	<% end %>
 	<%# h(@keys.inspect) %><br /><br />
