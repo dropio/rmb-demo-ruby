@@ -225,10 +225,10 @@ class Dropio::Client
   def parse_response(response)
     case response.code
     when 200 then return response
-    when 400 then raise Dropio::RequestError, parse_error_message(response)
-    when 403 then raise Dropio::AuthorizationError, parse_error_message(response)
-    when 404 then raise Dropio::MissingResourceError, parse_error_message(response)
-    when 500 then raise Dropio::ServerError, "There was a problem connecting to Drop.io."
+    #when 400 then raise Dropio::RequestError, parse_error_message(response)
+    #when 403 then raise Dropio::AuthorizationError, parse_error_message(response)
+   # when 404 then raise Dropio::MissingResourceError, parse_error_message(response)
+   # when 500 then raise Dropio::ServerError, "There was a problem connecting to Drop.io."
     else
       raise "Received an unexpected HTTP response: #{response.code} #{response.body}"
     end
