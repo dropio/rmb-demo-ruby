@@ -1,6 +1,6 @@
 class GetDropController < ApplicationController
   
-  require 'api' 
+  require 'dropio' 
   
   Dropio::Config.api_key = "72851f00745cdfd0e87207219f3106bcc9927f66"
   def index
