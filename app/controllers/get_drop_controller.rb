@@ -5,7 +5,7 @@ class GetDropController < ApplicationController
   Dropio::Config.api_key = "72851f00745cdfd0e87207219f3106bcc9927f66"
   def index
     drop = Dropio::Drop.find("fzf2n2l")
-
+    if false 
     @keys = []
     @howmany = drop.asset_count
     @drop = drop
@@ -16,6 +16,7 @@ class GetDropController < ApplicationController
             @keys << a.name 
         end
       }
+    end
     end
   end
      
