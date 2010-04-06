@@ -79,13 +79,13 @@ class Dropio::Asset < Dropio::Resource
   end
   
   # Generates an authenticated URL that will bypass any login action.
-  def generate_url
-    Dropio::Resource.client.generate_asset_url(self)
+  def generate_url(loc = nil)
+    Dropio::Resource.client.generate_asset_url(self, loc)
   end
   
   # Generates a url if there's access to the original file.
-  def original_file_url
-    Dropio::Resource.client.generate_original_file_url(self) if self.can_download_original
+  def original_file_url(loc = nil)
+    Dropio::Resource.client.generate_original_file_url(self, loc) if self.can_download_original
   end
   
 end

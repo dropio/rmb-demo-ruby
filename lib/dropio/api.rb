@@ -65,15 +65,15 @@ class Dropio::Api
     self.class.post("/drops/#{drop_name}/assets", :body => params)
   end
 
-  def add_file(drop_name, file_path, description = nil, convert_to = nil, pingback_url = nil, comment = nil, token = nil)
+  def add_file(drop_name, file_path, description = nil, convert_to = nil, pingback_url = nil, comment = nil, token = nil, output_locations = nil)
     url = URI.parse(Dropio::Config.upload_url)
     r = nil
     File.open(file_path) do |file|
       mime_type = (MIME::Types.type_for(file_path)[0] || MIME::Types["application/octet-stream"][0])
       req = Net::HTTP::Post::Multipart.new url.path,
       { 'api_key' => self.class.default_params[:api_key], 'drop_name' => drop_name, 'format' => 'json', 'description' => description,
-        'token' => token, 'version' => '2.0', 'convert_to' => convert_to, 'pingback_url' => pingback_url,
-        'comment' => comment, 'file' => UploadIO.new(file, mime_type, file_path) }
+        'token' => token, 'version' => '3.0', 'convert_to' => convert_to, 'pingback_url' => pingback_url,
+        'comment' => comment, 'output_locations' => output_locations, 'file' => UploadIO.new(file, mime_type, file_path) }
       http = Net::HTTP.new(url.host, url.port)
       http.set_debug_output $stderr if Dropio::Config.debug
       r = http.start{|http| http.request(req)}
@@ -82,8 +82,8 @@ class Dropio::Api
     (r.nil? or r.body.nil? or r.body.empty?) ? r : HTTParty::Response.new(Crack::JSON.parse(r.body), r.body, r.code, r.message, r.to_hash)
   end
   
-  def add_file_from_url(drop_name, url, description = nil, convert_to = nil, pingback_url = nil, token = nil)
-    self.class.post("/drops/#{drop_name}/assets", :body => {:token => token, :file_url => url, :description => description, :convert_to => convert_to, :pingback_url => pingback_url})
+  def add_file_from_url(drop_name, url, description = nil, convert_to = nil, pingback_url = nil, token = nil, output_locations = nil)
+    self.class.post("/drops/#{drop_name}/assets", :body => {:token => token, :file_url => url, :description => description, :convert_to => convert_to, :pingback_url => pingback_url, :output_locations => output_locations})
   end
 
   def assets(drop_name, page = 1, order = :oldest, token = nil)
@@ -98,8 +98,9 @@ class Dropio::Api
     signed_url(drop_name, token, asset_name)
   end
   
-  def generate_original_file_url(drop_name, asset_name, token)
-    Dropio::Config.api_url + "/drops/#{drop_name}/assets/#{asset_name}/download/original?version=2.0&api_key=#{self.class.default_params[:api_key]}&format=json&token=#{token}"
+  def generate_original_file_url(drop_name, asset_name, token, loc = nil)
+    u = Dropio::Config.api_url + "/drops/#{drop_name}/assets/#{asset_name}/download/original?version=3.0&api_key=#{self.class.default_params[:api_key]}&format=json&token=#{token}"
+    u += "location=#{loc}" if !loc.nil?
   end
 
   def asset_embed_code(drop_name, asset_name, token = nil)
