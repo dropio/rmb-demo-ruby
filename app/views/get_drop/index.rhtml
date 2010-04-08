@@ -1,15 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+ 
+<head> 
+	<title>Dropio API demo</title>
+	<style type="text/css">
+		#assets{
+			
+		}
+		body {
+			background:#ddddff;
+			margin:20px;
+			padding:0;
+			font-size:11px;
+			font-family:sans-serif;
+		}
+		
+	</style>
+</head>
+<body>
 
 <%= javascript_include_tag :defaults %>
 
-<div>
-	Test view<br />
-	<%= h(@drop.inspect) %>
-	<%= h(@howmany.inspect) %>
-	<% h(@drop.asset(1).inspect) %>
-	<%# @drop.assets.each do |a| %>
-	 	<br /><br />Asset: <%# h(a.name) %>
-	<%# end %>
-	<%# h(@keys.inspect) %><br /><br />
-	<br />
-	<%# h(@response.inspect)%>
+<div id="assets">
+	<h2>Examining the drop <%= h(@drop.name) %></h2>
+	There are <%= @howmany %> assets in this drop
+		<br />
+		<ul>
+		<% @assets.map {|a| %>
+			<li>
+			<h3><%= a.name %></h3>
+			<ul>
+			<% a.roles.map {|r| %>
+				<li>Role: <%= h(r["name"]) %>
+					<ul>
+					<% r["locations"].map {|loc| %>
+						<li>Location: <%= h(loc["name"]) %></li>
+						<% if r["name"] == "original_content" %>
+							<% ocurl = "#{Dropio::Config.api_url}/drops/#{@drop.name}/assets/#{a.name}/download/original?api_key=#{Dropio::Config.api_key}&version=3.0#{"&location=" + loc["name"] unless loc["name"] == "DropioS3"}" %>
+							<ul><li><a href="<%=ocurl%>">
+							Direct Download</a> or via <a href="<%=ocurl + "&via=akamai"%>">akamai</a>,<a href="<%=ocurl + "&via=voxel"%>">voxel</a>, or <a href="<%=ocurl + "&via=limelight"%>">limelight</a></li></ul>	
+							<%# http://stage-api.drop.io/drops/locdemo/assets/img-1859-jpg/download/original?api_key=b4463a2fe38c73ec35ac783507f50107155c0329&version=3.0&location=sl_2e2f29b01a82012da16efe5f8802078d&via=akamai %>
+						<% else %>
+							<ul><li><a href="<%= loc["file_url"] %>">Direct Download</a></li></ul>
+						<% end %>
+					<% } %>
+					</ul>
+				</li>
+			<% } %>
+			</ul>
+			</li>
+		<% } %>
+		</ul>
+	<br /><br />
+
 </div>
+
+<div id="uploader">
+	<h1>File Upload</h1>
+	<form action="http://assets.drop.io/upload" enctype="multipart/form-data" method="post">
+	
+	<p><label for="file">Select File</label> : 
+		<input type="file" name="file" id="file" /></p>
+	<input type="hidden" name='api_key' value='<%=Dropio::Config.api_key%>' />
+	<input type="hidden" name='version' value='3.0' />
+	<input type="hidden" name='drop_name' value='<%=@drop.name %>' />
+	<input type="hidden" name='redirect_to' value='<%= "http://" + request.env["HTTP_HOST"]  + request.request_uri %>' />
+	Output Locations: <input type="text_field" name='output_locations' value='DropioS3' />
+<br />	<input type="submit" /></form>
+<br />	<br />	<br />	<br />	<br />	
+
+
+</div>
+

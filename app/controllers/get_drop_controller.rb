@@ -2,26 +2,26 @@ class GetDropController < ApplicationController
   
   require 'dropio' 
   
-  Dropio::Config.api_key = "54651d667328449f5b98a0566323b4113801a8e5"
+  Dropio::Config.api_key = "348df82fc24bd1eff27084a7b5f876afe61d9d7b"
   def index
-    drop = Dropio::Drop.find("splayfist")
-     @drop = drop
-     @howmany = drop.asset_count
-    if false 
-    @keys = []
+    @dropname = params['drop'] || "splayfist"
+    drop = Dropio::Drop.find(@dropname)
+    @assets = []
     @howmany = drop.asset_count
-   
+    @drop = drop
     pages = (drop.asset_count / 30) + 1
     if !drop.blank?
       (pages).times { |i|
         drop.assets(i+1).each do |a|
-            @keys << a.name 
+            @assets << a
         end
       }
     end
-    end
   end
      
+  def uploadFile
+    @params = params
+  end
 
 
 end

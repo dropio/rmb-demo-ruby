@@ -93,12 +93,12 @@ class Dropio::Client
     a
   end
   
-  def generate_asset_url(asset, loc = nil)
-    self.service.generate_drop_url(asset.drop.name, asset.name, asset.drop.default_token, loc)
+  def generate_asset_url(asset)
+    self.service.generate_drop_url(asset.drop.name, asset.name, asset.drop.default_token)
   end
   
-  def generate_original_file_url(asset, loc = nil)
-    self.service.generate_original_file_url(asset.drop.name, asset.name, asset.drop.default_token, loc)
+  def generate_original_file_url(asset)
+    self.service.generate_original_file_url(asset.drop.name, asset.name, asset.drop.default_token)
   end
 
   def asset_embed_code(asset)
@@ -213,6 +213,7 @@ class Dropio::Client
     when :drop then return Dropio::Drop.new(response)
     when :drops then return response['drops'].collect{|s| Dropio::Drop.new(d)}
     when :asset then return Dropio::Asset.new(response)
+    #when :assets then raise "output: #{response.code} #{response.body}"
     when :assets then return response['assets'].collect{|a| Dropio::Asset.new(a)}
     when :comment then return Comment.new(response)
     when :comments then return response['comments'].collect{|c| Dropio::Comment.new(c)}
