@@ -16,6 +16,7 @@
 		}
 		
 	</style>
+	
 </head>
 <body>
 
@@ -38,10 +39,21 @@
 						<% if r["name"] == "original_content" %>
 							<% ocurl = "#{Dropio::Config.api_url}/drops/#{@drop.name}/assets/#{a.name}/download/original?api_key=#{Dropio::Config.api_key}&version=3.0#{"&location=" + loc["name"] unless loc["name"] == "DropioS3"}" %>
 							<ul><li><a href="<%=ocurl%>">
-							Direct Download</a> or via <a href="<%=ocurl + "&via=akamai"%>">akamai</a>,<a href="<%=ocurl + "&via=voxel"%>">voxel</a>, or <a href="<%=ocurl + "&via=limelight"%>">limelight</a></li></ul>	
+							Direct Download</a> or via 
+							<% cdnout = []
+								Dropio::Config.enabled_cdns.map{|cdn|
+								cdnout << "<a href=\"#{ocurl}&via=#{cdn}\">#{cdn}</a>"
+							}%>
+							<%=cdnout.join(", ")%>
+							</li></ul>	
 							<%# http://stage-api.drop.io/drops/locdemo/assets/img-1859-jpg/download/original?api_key=b4463a2fe38c73ec35ac783507f50107155c0329&version=3.0&location=sl_2e2f29b01a82012da16efe5f8802078d&via=akamai %>
 						<% else %>
-							<ul><li><a href="<%= loc["file_url"] %>">Direct Download</a></li></ul>
+							<ul><li><a href="<%= loc["file_url"] %>">Direct Download</a> or via 
+							<% cdnout = []
+								Dropio::Config.enabled_cdns.map{|cdn|
+								cdnout << "<a href=\"#{loc["file_url"]}?via=#{cdn}\">#{cdn}</a>"
+							}%>
+							<%=cdnout.join(", ")%></li></ul>
 						<% end %>
 					<% } %>
 					</ul>
@@ -54,7 +66,20 @@
 	<br /><br />
 
 </div>
-
+<script type="text/javascript">
+	function makeol(){
+		//alert('test');
+		var chks = $$("input");
+		var olval = [];
+		chks.each( function( element ) {
+			if(element.type == 'checkbox' && element.checked){
+				//alert(element.value);
+				olval.push(element.value);
+			} 
+		});
+		$("olfield").value = olval.join(",");
+	}
+</script>
 <div id="uploader">
 	<h1>File Upload</h1>
 	<form action="http://assets.drop.io/upload" enctype="multipart/form-data" method="post">
@@ -65,10 +90,20 @@
 	<input type="hidden" name='version' value='3.0' />
 	<input type="hidden" name='drop_name' value='<%=@drop.name %>' />
 	<input type="hidden" name='redirect_to' value='<%= "http://" + request.env["HTTP_HOST"]  + request.request_uri %>' />
-	Output Locations: <input type="text_field" name='output_locations' value='DropioS3' />
+	Output Locations: 
+	<% @output_locations.map {|ol| %> 
+		<br />
+		<input type="checkbox" name='output_location[<%= ol %>]' id="" value='<%= ol %>'  onclick="makeol()" <%= "checked" if ol == "DropioS3" %>/>
+		<label for="output_location[<%= ol %>]" ><%= ol %></label>
+		
+	<% } %>
+	<input type="hidden" name='output_locations' value='DropioS3' id='olfield' />
 <br />	<input type="submit" /></form>
-<br />	<br />	<br />	<br />	<br />	
-
+<br />	<br />	<br />	<br />
 
 </div>
+
+<%= link_to '&laquo back to drops list', drops_path() %>
+	<br />
+</body></html>
 

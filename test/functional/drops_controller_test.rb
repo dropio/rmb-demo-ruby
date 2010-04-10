@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GetDropControllerTest < ActionController::TestCase
+class DropsControllerTest < ActionController::TestCase
   # Replace this with your real tests.
   test "the truth" do
     assert true
