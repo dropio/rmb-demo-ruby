@@ -1,9 +1,9 @@
 class DropsController < ApplicationController
   
   require 'dropio' 
-  Dropio::Config.api_key = "YOUR_KEY_HERE"
-  Dropio::Config.manager_api_token = "YOUR_MANAGER_TOKEN_HERE"
-  Dropio::Config.user_output_locations = []
+  Dropio::Config.api_key = "348df82fc24bd1eff27084a7b5f876afe61d9d7b"
+  Dropio::Config.manager_api_token = "dq7yf4m3qx"
+  Dropio::Config.user_output_locations = ["sl_0bb68ad0233c012db8e7fffb204ba9a3"]
   Dropio::Config.enabled_cdns = ["akamai", "voxel", "limelight"]
   
   
