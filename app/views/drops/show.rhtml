@@ -51,7 +51,7 @@
 							<ul><li><a href="<%= loc["file_url"] %>">Direct Download</a> or via 
 							<% cdnout = []
 								Dropio::Config.enabled_cdns.map{|cdn|
-								cdnout << "<a href=\"#{loc["file_url"]}?via=#{cdn}\">#{cdn}</a>"
+								cdnout << "<a href=\"#{loc["file_url"]}#{loc["file_url"].index("?") ? '&' : '?'}via=#{cdn}\">#{cdn}</a>"
 							}%>
 							<%=cdnout.join(", ")%></li></ul>
 						<% end %>
