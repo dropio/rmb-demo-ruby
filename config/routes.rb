@@ -33,7 +33,7 @@ ActionController::Routing::Routes.draw do |map|
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
    map.resources :drops
    map.root :controller => "Drops"
-
+   map.connect 'drops/:id/:viewmode', :controller => 'drops', :action => 'show'
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.

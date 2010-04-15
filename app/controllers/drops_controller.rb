@@ -37,4 +37,8 @@ class DropsController < ApplicationController
         }
       end
   end
+  
+  def upload
+  end
+  
 end
