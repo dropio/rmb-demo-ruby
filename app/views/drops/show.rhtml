@@ -67,12 +67,20 @@
 							</li></ul>	
 							<%# http://stage-api.drop.io/drops/locdemo/assets/img-1859-jpg/download/original?api_key=b4463a2fe38c73ec35ac783507f50107155c0329&version=3.0&location=sl_2e2f29b01a82012da16efe5f8802078d&via=akamai %>
 						<% else %>
-							<ul><li><a href="<%= loc["file_url"] %>">Direct Download</a> or via 
-							<% cdnout = []
-								Dropio::Config.enabled_cdns.map{|cdn|
-								cdnout << "<a href=\"#{loc["file_url"]}#{loc["file_url"].index("?") ? '&' : '?'}via=#{cdn}\">#{cdn}</a>"
-							}%>
-							<%=cdnout.join(", ")%></li></ul>
+							<% if loc["status"] == "complete" %>
+								<ul><li><a href="<%= loc["file_url"] %>">Direct Download</a> or via 
+								<%
+								 cdnout = []  
+								
+									Dropio::Config.enabled_cdns.map{|cdn|
+										cdnout << "<a href=\"#{loc["file_url"]}#{loc["file_url"].index("?") ? '&' : '?'}via=#{cdn}\">#{cdn}</a>"
+									}
+							
+									 %>
+								<%=cdnout.join(", ")%></li></ul>
+							<% else %>
+									<ul><li><%=loc["status"]%></li></ul>
+							<% end%>
 						<% end %>
 					<% } %>
 					</ul>
