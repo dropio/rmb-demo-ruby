@@ -161,27 +161,34 @@
 					if a.type == "image"
 						a.roles.map{|r| 
 							if r["name"] == "thumbnail" 
-								preview = "<img src=\"#{r["locations"].first["file_url"]}\" alt="">"
+								if r["locations"].first["status"] == "complete"
+									preview = "<img src=\"#{r["locations"].first["file_url"]}\" alt="">"
+								end
 							end
 						}
 					elsif a.type == "audio"
-						preview = '<embed type="application/x-shockwave-flash" src="http://www.google.com/reader/ui/3247397568-audio-player.swf?audioUrl='
-						preview += CGI::escape "#{Dropio::Config.api_url}/drops/#{@drop.name}/assets/#{a.name}/download/original?api_key=#{Dropio::Config.api_key}&version=3.0#{"&location=" + a.roles.first["locations"].first["name"] unless a.roles.first["locations"].first["name"] == "DropioS3"}"
-						preview += '" width="400" height="27" allowscriptaccess="never" quality="best" bgcolor="#ffffff" wmode="window" flashvars="playerMode=embedded" />'
+						if a.roles.first["locations"].first["status"] == "complete"
+							preview = '<embed type="application/x-shockwave-flash" src="http://www.google.com/reader/ui/3247397568-audio-player.swf?audioUrl='
+							preview += CGI::escape "#{Dropio::Config.api_url}/drops/#{@drop.name}/assets/#{a.name}/download/original?api_key=#{Dropio::Config.api_key}&version=3.0#{"&location=" + a.roles.first["locations"].first["name"] unless a.roles.first["locations"].first["name"] == "DropioS3"}"
+							preview += '" width="400" height="27" allowscriptaccess="never" quality="best" bgcolor="#ffffff" wmode="window" flashvars="playerMode=embedded" />'
+						end
 					elsif a.type == "movie"
 						flv = ''
 						a.roles.map{|r| 
 							if r["name"] == "web_preview" 
-								flv = r["locations"].first["file_url"]
+								if r["locations"].first["status"] == "complete"
+									flv = r["locations"].first["file_url"]
+									preview = "<object width='400' height='325' id='flvPlayer'>
+									  <param name='allowFullScreen' value='true'>
+									  <param name='movie' value='/osflv/OSplayer.swf?movie=#{CGI::escape flv}&btncolor=0x333333&accentcolor=0x31b8e9&txtcolor=0xdddddd&volume=30&previewimage=&autoload=off&vTitle=Super Mario Brothers Lego Edition&showTitle=yes'>
+									  <embed src='/osflv/OSplayer.swf?movie=#{CGI::escape flv}&btncolor=0x333333&accentcolor=0x31b8e9&txtcolor=0xdddddd&volume=30&previewimage=&autoload=off&vTitle=Super Mario Brothers Lego Edition&showTitle=yes' width='400' height='325' allowFullScreen='true' type='application/x-shockwave-flash'>
+									 </object>"
+								end
 							end
 						}
-						preview = "<object width='400' height='325' id='flvPlayer'>
-						  <param name='allowFullScreen' value='true'>
-						  <param name='movie' value='/osflv/OSplayer.swf?movie=#{CGI::escape flv}&btncolor=0x333333&accentcolor=0x31b8e9&txtcolor=0xdddddd&volume=30&previewimage=&autoload=off&vTitle=Super Mario Brothers Lego Edition&showTitle=yes'>
-						  <embed src='/osflv/OSplayer.swf?movie=#{CGI::escape flv}&btncolor=0x333333&accentcolor=0x31b8e9&txtcolor=0xdddddd&volume=30&previewimage=&autoload=off&vTitle=Super Mario Brothers Lego Edition&showTitle=yes' width='400' height='325' allowFullScreen='true' type='application/x-shockwave-flash'>
-						 </object>"
+						
 					else
-						preview = h(a.inspect)
+						#preview = h(a.inspect)
 					end 
 					%>
 					<%= preview %>
