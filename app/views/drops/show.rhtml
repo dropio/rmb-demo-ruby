@@ -28,7 +28,7 @@
 	$(document).ready(function() {
 	$('#file').uploadify({
 	'uploader'  : '/uploadify/uploadify.swf',
-	'script'    : 'http://assets.drop.io/upload',
+	'script'    : '<%= Dropio::Config.upload_url %>',
 	'multi'    : true,
 	'scriptData': {'api_key': '<%=Dropio::Config.api_key%>', 'version':'3.0','drop_name': '<%=@drop.name %>'},
 	'cancelImg' : '/uploadify/cancel.png',
@@ -111,7 +111,7 @@
 </script>
 <div id="uploader">
 	<h1>File Upload</h1>
-	<form action="http://assets.drop.io/upload" enctype="multipart/form-data" method="post">
+	<form action="<%= Dropio::Config.upload_url %>" enctype="multipart/form-data" method="post">
 	
 	<p><label for="file">Select File</label> : 
 		<input type="file" name="file" id="file" /></p>
@@ -186,6 +186,15 @@
 									  <param name='movie' value='/osflv/OSplayer.swf?movie=#{CGI::escape flv}&btncolor=0x333333&accentcolor=0x31b8e9&txtcolor=0xdddddd&volume=30&previewimage=&autoload=off&vTitle=Super Mario Brothers Lego Edition&showTitle=yes'>
 									  <embed src='/osflv/OSplayer.swf?movie=#{CGI::escape flv}&btncolor=0x333333&accentcolor=0x31b8e9&txtcolor=0xdddddd&volume=30&previewimage=&autoload=off&vTitle=Super Mario Brothers Lego Edition&showTitle=yes' width='400' height='325' allowFullScreen='true' type='application/x-shockwave-flash'>
 									 </object>"
+								end
+							end
+						}
+					elsif a.type == "document"
+						a.roles.map{|r| 
+							if r["name"] == "web_preview"
+								if r["locations"].first["status"] == "complete"
+									pdf = r["locations"].first["file_url"]
+									preview += "<embed width=\"600\" height=\"300\" src=\"http://docs.google.com/viewer?embedded=true&url=#{CGI::escape pdf}\" />"
 								end
 							end
 						}

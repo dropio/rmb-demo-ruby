@@ -1,5 +1,5 @@
 <h1>Drops associated with your API key:</h1>
-<% if !@manager_info.empty? %>
+<% if !@manager_info["drops"].nil? %>
 <ul>
 
 <% @manager_info["drops"].map {|drop| %>
