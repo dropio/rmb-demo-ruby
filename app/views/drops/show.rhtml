@@ -131,6 +131,7 @@
 <br />	<br />	<br />	<br />
 
 </div>
+<%= %>
 
 <%= link_to '&laquo back to drops list', drops_path() %>
 	<br />
@@ -150,7 +151,14 @@
 	<h2 style="font-size:24px">Viewing the contents of "<%= h(@drop.name) %>"</h2>
 		<br />
 		<table><tr><th width="250">Title & Description</th><th width="400">Preview</th><th width="50">Original file</th></tr>
-		<% @assets.map {|a| %>
+		<% @assets.map {|a| 
+			origfile = Dropio::Config.api_url
+			origfile += "/drops/#{@drop.name}/assets/#{a.name}/download/original?api_key=#{Dropio::Config.api_key}"
+			origfile += "&version=3.0"
+			if a.roles.first["locations"].first["name"] != "DropioS3"
+				origfile += "&location=" + a.roles.first["locations"].first["name"]
+			end
+			%>
 			<tr>
 				<td>
 					<strong><%= a.title %></strong>
@@ -172,7 +180,7 @@
 					elsif a.type == "audio"
 						if a.roles.first["locations"].first["status"] == "complete"
 							preview = '<embed type="application/x-shockwave-flash" src="http://www.google.com/reader/ui/3247397568-audio-player.swf?audioUrl='
-							preview += CGI::escape "#{Dropio::Config.api_url}/drops/#{@drop.name}/assets/#{a.name}/download/original?api_key=#{Dropio::Config.api_key}&version=3.0#{"&location=" + a.roles.first["locations"].first["name"] unless a.roles.first["locations"].first["name"] == "DropioS3"}"
+							preview += CGI::escape origfile
 							preview += '" width="400" height="27" allowscriptaccess="never" quality="best" bgcolor="#ffffff" wmode="window" flashvars="playerMode=embedded" />'
 						end
 					elsif a.type == "movie"
@@ -193,19 +201,19 @@
 						a.roles.map{|r| 
 							if r["name"] == "web_preview"
 								if r["locations"].first["status"] == "complete"
-									pdf = r["locations"].first["file_url"]
-									preview += "<embed width=\"600\" height=\"300\" src=\"http://docs.google.com/viewer?embedded=true&url=#{CGI::escape pdf}\" />"
+									docurl = r["locations"].first["file_url"]
+									preview += "<embed width=\"600\" height=\"300\" src=\"http://docs.google.com/viewer?embedded=true&url=#{CGI::escape docurl}\" />"
 								end
 							end
 						}
-						
 					else
+						preview = "<a href='#{origfile}'><img src='/images/downloaddisk.png' style='border:none' alt='download'/></a>"
 						#preview = h(a.inspect)
 					end 
 					%>
 					<%= preview %>
 				</td>
-				<td><a href="<%= "#{Dropio::Config.api_url}/drops/#{@drop.name}/assets/#{a.name}/download/original?api_key=#{Dropio::Config.api_key}&version=3.0#{"&location=" + a.roles.first["locations"].first["name"] unless a.roles.first["locations"].first["name"] == "DropioS3"}" %>">link</a></td>
+				<td><a href="<%= origfile %>">link</a></td>
 			</tr>
 		<% } %>
 		</table>
