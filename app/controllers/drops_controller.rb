@@ -28,7 +28,7 @@ class DropsController < ApplicationController
   def new
     if params['id'] 
       service = Dropio::Api.new
-      service.create_drop({"name"=>params['id']})
+      service.create_drop({"name"=>params['id'], "expiration_length"=>"1_YEAR_FROM_LAST_VIEW"})
       redirect_to :drops
     end
   end
