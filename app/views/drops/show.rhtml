@@ -46,8 +46,14 @@
 
 <div id="assets">
 	<h2>Examining the drop <%= h(@drop.name) %></h2>
+	
+	<h4>Switch to
+	<%= link_to 'media view', drop_path(@drop.name) + '/fancy' %> to see these assets displayed inline</h4>
+
+	<br />
 	There are <%= @howmany %> assets in this drop
 		<br />
+
 		<ul>
 		<% @assets.map {|a| %>
 			<li>
@@ -133,6 +139,8 @@
 </div>
 <%= %>
 
+<br />
+
 <%= link_to '&laquo back to drops list', drops_path() %>
 	<br />
 <%####################################################################################### %>
@@ -149,6 +157,8 @@
 
 <div id="assets">
 	<h2 style="font-size:24px">Viewing the contents of "<%= h(@drop.name) %>"</h2>
+	<h4>Switch to 
+	<%= link_to 'detailed view', drop_path(@drop.name) %> to view information about these assets</h4>
 		<br />
 		<table><tr><th width="250">Title & Description</th><th width="400">Preview</th><th width="50">Original file</th></tr>
 		<% @assets.map {|a| 
