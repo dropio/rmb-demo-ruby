@@ -1,0 +1,13 @@
+# ignore annoying OS artifacts
+*~
+.DS_Store
++*#
+.#*
+*.swp
+._*
+
+# ignore log files, ignore output files, ignore pidfiles
+*.log
+*.output
+*.pid
+
