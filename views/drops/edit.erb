@@ -1,0 +1,16 @@
+<h1>Editing drop '<%= @drop.name %>'</h1>
+<form action="/drops/<%= @drop.name %>/update" method="post">
+  <ul>
+    <li>
+      <label for="name">Drop name:</label>
+      <input type="text" name="new_name" value="<%= @drop.name %>"/></li>
+    <li>
+      <label for="description">Description:</label>
+      <textarea cols="20" rows="10" name="description" value="<%= @drop.description %>"></textarea>
+    </li>
+    <li>
+    <input type="hidden" name="orig_name" value="<%= @drop.name %>"/>
+      <input type="submit"/>
+    </li>
+  </ul>
+</form>

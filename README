@@ -1,5 +1,0 @@
-== Drop.io Rich Media Backbone Services demo
-
-This is a small demo app to show how easy it is to build Drop.io's Rich Media Backbone Services (uploading, conversion, storage, and delivery) into your own applications. This app is intentionally simple, and illustrates how to get assets into and out of drops, and how you can wrap the converted assets in 3rd party players to provide a seamless, unbranded experience to your users while using drop.io's simple Rich Media API. 
-
- 

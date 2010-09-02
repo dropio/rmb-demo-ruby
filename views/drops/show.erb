@@ -1,0 +1,68 @@
+<h1>Assets for Drop '<%= @drop.name %>'</h1>
+<form action='http://assets.drop.io/upload' enctype='multipart/form-data' method='post'>
+  <ul>
+    <li>
+      <label for='file'>Add a new file:</label>
+      <input name='file' size='25' type='file' />
+    </li>
+    <li>
+      <input name='api_key' type='hidden' value='<%= API_KEY %>' />
+      <input name='drop_name' type='hidden' value='<%= @drop.name %>' />
+      <input name='redirect_to' type='hidden' value='<%= @redirect_url %>' />
+      <input name='timestamp' type='hidden' value='<%= (Time.now.to_i + 900).to_s %>' />
+      <input type='hidden' version='3.0' />
+      <input type='submit' value='submit' />
+    </li>
+  </ul>
+</form>
+<p>Or use flash uploader</p>
+<br />
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#file').uploadify({
+      'uploader'  : '/utils/uploadify/uploadify.swf',
+      'script'    : 'http://assets.drop.io/upload',
+      'multi'     : true,
+      'scriptData': {
+        "api_key":'<%= API_KEY %>',
+        "drop_name":'<%= @drop.name %>',
+        "format":"json",
+        "timestamp":'<%= (Time.now.to_i + 900).to_s %>',
+        "version":"3.0"
+      },
+      'cancelImg' : '/utils/uploadify/cancel.png',
+      'auto'      : true,
+      'onAllComplete' : function(){
+        setTimeout(window.location = '<%= request.url %>', 1000);
+      },
+      'onError'   : function(e, q, f, o) { alert("ERROR: " + o.info + o.type); }, 
+      'folder'    : '/uploads'
+    });
+  });
+</script>
+<input type="file" name="fileUpload" id="file"/>
+<% if flash[:notice] %>
+  <div id="message">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<% unless @drop.assets.empty? %>
+ <h2>Files in this drop</h2>
+  <table>
+    <% @drop.assets.each do |asset| %>
+      <tr>
+        <td>
+          <% if asset.roles.first['content_type'] =~ /image/ %>
+            <% unless asset.roles.reverse[1].nil? %>
+              <img src="<%= asset.roles.reverse[1]['locations'].first['file_url'] %>" />
+            <% end %>
+          <% end %>
+        </td>
+        <td><%= asset.name %></td>
+        <td>
+          <a href="/drops/<%= @drop.name %>/assets/<%= asset.name %>/delete" class="delete">Delete</a>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

@@ -1,0 +1,56 @@
+<h1>Drop.io API Simple Demo for Ruby</h1>
+<p>
+  Thank you for downloading our API. These demos provide simple examples
+  which will get you started on making your own apps which hook up to
+  the Drop.io Rich Media Backbone.
+</p>
+<p>
+  This is a fully functional demo app that you can use to manage your drops.
+  To get started all you need to do is edit the <i>config.yml</i>
+  file with your <i>api key</i> and <i>api secret</i> if you are using secured keys.
+</p>
+<p>Note: api secret is optional if you are using unsecured api keys.</p>
+<hr />
+<p>
+  <b>
+    Your API_KEY: <%= API_KEY %>
+  </b>
+  <br />
+  <b>
+    Your API_SECRET: <%= API_SECRET %>
+  </b>
+</p>
+<hr />
+<% if flash[:notice] %>
+  <div id="message">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<div>
+  <form action='/drops/create' method='post'>
+    <label for='dropname'>Create new drop:</label>
+    <input name='dropname' type='text' />
+    <input type='submit' />
+  </form>
+  <form action='/drops/create' method='post'>
+    <input name='dropname' type='hidden' value='random' />
+    <input type='submit' value='Generate Random Drop' />
+  </form>
+  <% unless @drops["drops"].nil? %>
+	  <h2>Your Drops</h2>
+	  <div>
+	    <% @drops["drops"].each do |drop| %>
+	      <div class='dropname'>
+	        <a href='/drops/<%= drop['name'] %>' title='View <%= drop["name"] %>'><%= drop["name"] %></a>
+	      </div>
+	      <div class='actionlink edit'>
+	        <a href='/drops/<%= drop['name'] %>/edit' title='Edit'>Edit</a>
+	      </div>
+	      <div class='actionlink delete'>
+	        <a href='/drops/<%= drop['name'] %>/delete' title='Delete' class="delete">Delete</a>
+	      </div>
+	      <div style='clear:both'></div>
+	    <% end %>
+	  </div>
+  <% end %>
+</div>
