@@ -1,4 +1,4 @@
-Drop.io Rich Media Backbone Simple Demo Application:
+Drop.io Rich Media Backbone simple demo application:
 =====================================================
 
 This is a small demo application written in Ruby using the Sinatra web framework that shows how to do basic things with the Rich Media Backbone API.
