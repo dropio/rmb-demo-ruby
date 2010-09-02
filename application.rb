@@ -9,7 +9,7 @@ configure do
   Dropio::Config.api_key = "#{CONFIG['api_key']}"
 
   # Only needed for secure keys
-  Dropio::Config.api_secret = "#{CONFIG['api_secret']}"
+  # Dropio::Config.api_secret = "#{CONFIG['api_secret']}"
 
   # Uncomment to enable Dropio logging
   # Dropio::Config.debug = true
