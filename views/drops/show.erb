@@ -35,7 +35,7 @@
       'onAllComplete' : function(){
         setTimeout(window.location = '<%= request.url %>', 1000);
       },
-      'onError'   : function(e, q, f, o) { alert("ERROR: " + o.info + o.type); }, 
+      'onError'   : function(e, q, f, o) { alert("ERROR: " + o.info + o.type); },
       'folder'    : '/uploads'
     });
   });
@@ -52,6 +52,7 @@
     <% @drop.assets.each do |asset| %>
       <tr>
         <td>
+          <%# TODO: Fix this %>
           <% if asset.roles.first['content_type'] =~ /image/ %>
             <% unless asset.roles.reverse[1].nil? %>
               <img src="<%= asset.roles.reverse[1]['locations'].first['file_url'] %>" />
