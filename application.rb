@@ -6,7 +6,7 @@ require 'rack-flash'
 configure do
   CONFIG = YAML.load_file(File.expand_path(File.dirname(__FILE__) + '/config.yml'))
 
-  Dropio::Config.api_key = "#{CONFIG['api_key']}"
+  Dropio::Config.api_key = CONFIG['api_key']
 
   # Only needed for secure keys
   # Dropio::Config.api_secret = "#{CONFIG['api_secret']}"
@@ -21,7 +21,7 @@ configure do
   enable :sessions
   use Rack::Flash, :sweep => true
 end
-  
+
 get '/' do
   service = Dropio::Api.new
   @drops = service.manager_drops(API_TOKEN)
@@ -71,5 +71,5 @@ get '/drops/:drop/assets/:asset/delete/?' do
   @asset = Dropio::Asset.find(@drop, params[:asset])
   @asset.destroy!
   flash[:notice] = "Asset was sucessfully deleted."
-  redirect "/drops/#{params[:drop]}" 
+  redirect "/drops/#{params[:drop]}"
 end
