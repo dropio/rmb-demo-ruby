@@ -1,6 +1,18 @@
 <h1>Editing asset: '<%= @asset.name %>'</h1>
 <p>
   <% if @asset.type == "image" %>
-    <%= @asset.roles.first['locations'] %>
+    <img src="<%= @asset.original_file_url %>" alt="<%= @asset.name %>" />
   <% end %>
 </p>
+<form action="/drops/<%= @drop.name %>/assets/<%= @asset.name %>/update" method="post">
+  <ul>
+    <li>
+      <label for="description">Description:</label>
+      <textarea cols="20" rows="10" name="description"></textarea>
+    </li>
+    <li>
+      <input type="hidden" name="orig_name" value="<%= @drop.name %>" />
+      <input type="submit" />
+    </li>
+  </ul>
+</form>

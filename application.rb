@@ -79,3 +79,12 @@ get '/drops/:drop/assets/:asset/delete/?' do
   flash[:notice] = "Asset was sucessfully deleted."
   redirect "/drops/#{params[:drop]}"
 end
+
+post '/drops/:drop/assets/:asset/update/?' do
+  @drop = Dropio::Drop.find(params[:drop])
+  @asset = Dropio::Asset.find(@drop, params[:asset])
+  @asset.description = params[:description]
+  @asset.save
+  flash[:notice] = "Asset was successfully updated."
+  redirect "/drops/#{params[:drop]}"
+end
