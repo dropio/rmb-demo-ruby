@@ -38,11 +38,6 @@ get '/drops/:name/?' do
   end
 end
 
-get '/drops/:name/edit/?' do
-  @drop = Dropio::Drop.find(params[:name])
-  erb :'drops/edit'
-end
-
 get '/drops/:name/delete/?' do
   @drop = Dropio::Drop.find(params[:name])
   @drop.destroy!
@@ -57,21 +52,6 @@ post '/drops/create' do
   redirect '/'
 end
 
-post '/drops/:name/update' do
-  @drop = Dropio::Drop.find(params[:orig_name])
-  @drop.change_name(params[:new_name])
-  @drop.description = params[:description]
-  @drop.save
-  flash[:notice] = "Drop was successfully updated."
-  redirect '/'
-end
-
-get '/drops/:drop/assets/:asset/edit/?' do
-  @drop = Dropio::Drop.find(params[:drop])
-  @asset = Dropio::Asset.find(@drop, params[:asset])
-  erb :'assets/edit'
-end
-
 get '/drops/:drop/assets/:asset/delete/?' do
   @drop = Dropio::Drop.find(params[:drop])
   @asset = Dropio::Asset.find(@drop, params[:asset])
@@ -80,11 +60,3 @@ get '/drops/:drop/assets/:asset/delete/?' do
   redirect "/drops/#{params[:drop]}"
 end
 
-post '/drops/:drop/assets/:asset/update/?' do
-  @drop = Dropio::Drop.find(params[:drop])
-  @asset = Dropio::Asset.find(@drop, params[:asset])
-  @asset.description = params[:description]
-  @asset.save
-  flash[:notice] = "Asset was successfully updated."
-  redirect "/drops/#{params[:drop]}"
-end

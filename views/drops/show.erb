@@ -52,17 +52,12 @@
     <% @drop.assets.each do |asset| %>
       <tr>
         <td>
-          <%# TODO: Fix this %>
-          <% if asset.roles.first['content_type'] =~ /image/ %>
-            <% unless asset.roles.reverse[1].nil? %>
-              <img src="<%= asset.roles.reverse[1]['locations'].first['file_url'] %>" />
-            <% end %>
+          <% if asset.type == "image" %>
+            <img src="<%= asset.original_file_url %>" />
           <% end %>
         </td>
         <td><%= asset.name %></td>
         <td>
-          <a href="/drops/<%= @drop.name %>/assets/<%= asset.name %>/edit">Edit</a> 
-          |
           <a href="/drops/<%= @drop.name %>/assets/<%= asset.name %>/delete" class="delete">Delete</a>
         </td>
       </tr>
