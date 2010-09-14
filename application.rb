@@ -66,6 +66,12 @@ post '/drops/:name/update' do
   redirect '/'
 end
 
+get '/drops/:drop/assets/:asset/edit/?' do
+  @drop = Dropio::Drop.find(params[:drop])
+  @asset = Dropio::Asset.find(@drop, params[:asset])
+  erb :'assets/edit'
+end
+
 get '/drops/:drop/assets/:asset/delete/?' do
   @drop = Dropio::Drop.find(params[:drop])
   @asset = Dropio::Asset.find(@drop, params[:asset])

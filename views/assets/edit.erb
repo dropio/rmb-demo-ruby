@@ -1,0 +1,6 @@
+<h1>Editing asset: '<%= @asset.name %>'</h1>
+<p>
+  <% if @asset.type == "image" %>
+    <%= @asset.roles.first['locations'] %>
+  <% end %>
+</p>
