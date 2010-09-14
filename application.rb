@@ -9,14 +9,14 @@ configure do
   Dropio::Config.api_key = CONFIG['api_key']
 
   # Only needed for secure keys
-  # Dropio::Config.api_secret = "#{CONFIG['api_secret']}"
+  # Dropio::Config.api_secret = CONFIG['api_secret']
 
   # Uncomment to enable Dropio logging
   # Dropio::Config.debug = true
 
   API_KEY = Dropio::Config.api_key
   API_SECRET = Dropio::Config.api_secret
-  API_TOKEN = "#{CONFIG['api_token']}"
+  API_TOKEN = CONFIG['api_token']
 
   enable :sessions
   use Rack::Flash, :sweep => true
