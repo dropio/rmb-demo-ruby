@@ -4,7 +4,9 @@ require 'dropio'
 require 'rack-flash'
 
 configure do
-  CONFIG = YAML.load_file(File.expand_path(File.dirname(__FILE__) + '/config.yml'))
+  CONFIG = YAML.load_file(
+    File.expand_path(File.dirname(__FILE__) + '/config.yml')
+  )
 
   Dropio::Config.api_key = CONFIG['api_key']
 
@@ -32,6 +34,7 @@ get '/drops/:name/?' do
   @redirect_url = request.url
   begin
     @drop = Dropio::Drop.find(params[:name])
+    @assets = @drop.assets
     erb :'drops/show'
   rescue Dropio::MissingResourceError => e
     "#{e}"
