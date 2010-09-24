@@ -9,12 +9,15 @@ configure do
   )
 
   Dropio::Config.api_key = CONFIG['api_key']
+  Dropio::Config.base_url = "http://stage-release.drop.io"
+  Dropio::Config.api_url = "http://stage-release-api.drop.io"
+  Dropio::Config.upload_url = "http://stage-release-assets.drop.io/upload"
 
   # Only needed for secure keys
   # Dropio::Config.api_secret = CONFIG['api_secret']
 
   # Uncomment to enable Dropio logging
-  # Dropio::Config.debug = true
+  Dropio::Config.debug = true
 
   API_KEY = Dropio::Config.api_key
   API_SECRET = Dropio::Config.api_secret
@@ -25,8 +28,7 @@ configure do
 end
 
 get '/' do
-  service = Dropio::Api.new
-  @drops = service.manager_drops(API_TOKEN)
+  @drops = Dropio::Drop.find_all
   erb :'drops/index'
 end
 

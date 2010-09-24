@@ -2,11 +2,11 @@ GEM
   remote: http://rubygems.org/
   specs:
     crack (0.1.8)
-    dropio (3.0.0.pre4)
+    dropio (3.0.0.pre6)
       httparty (= 0.6.1)
       json
       mime-types
-      multipart-post
+      multipart-post (= 1.0.1)
     httparty (0.6.1)
       crack (= 0.1.8)
     json (1.4.6)
@@ -22,6 +22,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dropio (= 3.0.0.pre4)
+  dropio (= 3.0.0.pre6)
   rack-flash (= 0.1.1)
   sinatra (= 1.0)
