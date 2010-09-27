@@ -1,43 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
- 
-<head> 
-	<title>Dropio API demo</title>
-	<style type="text/css">
-		#assets{
-			
-		}
-		body {
-			background:#ddddff;
-			margin:20px;
-			padding:0;
-			font-size:11px;
-			font-family:sans-serif;
-		}
-		
-		
-	
-	</style>
-	<script type="text/javascript" src="/uploadify/jquery-1.3.2.min.js"></script>
-	<script type="text/javascript" src="/uploadify/swfobject.js"></script>
-	<script type="text/javascript" src="/uploadify/jquery.uploadify.v2.1.0.min.js"></script>
-	<link rel="stylesheet" type="text/css" media="screen, projection" href="/uploadify/uploadify.css" />
-	
-	
-	<script type="text/javascript">// <![CDATA[
-	$(document).ready(function() {
-	$('#file').uploadify({
-	'uploader'  : '/uploadify/uploadify.swf',
-	'script'    : '<%= Dropio::Config.upload_url %>',
-	'multi'    : true,
-	'scriptData': {'api_key': '<%=Dropio::Config.api_key%>', 'version':'3.0','drop_name': '<%=@drop.name %>'},
-	'cancelImg' : '/uploadify/cancel.png',
-	'auto'      : true,
-	'onAllComplete' : function(){setTimeout(window.location.reload(),3000);}, 
-	'folder'    : '/uploads'
-	});
-	});
-	// ]]></script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Dropio API demo</title>
+  <style type="text/css">
+    #assets{
+
+    }
+    body {
+      background:#ddddff;
+      margin:20px;
+      padding:0;
+      font-size:11px;
+      font-family:sans-serif;
+    }
+
+
+
+  </style>
+  <script type="text/javascript" src="/uploadify/jquery-1.3.2.min.js"></script>
+  <script type="text/javascript" src="/uploadify/swfobject.js"></script>
+  <script type="text/javascript" src="/uploadify/jquery.uploadify.v2.1.0.min.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen, projection" href="/uploadify/uploadify.css" />
+
+
+  <script type="text/javascript">// <![CDATA[
+  $(document).ready(function() {
+  $('#file').uploadify({
+  'uploader'  : '/uploadify/uploadify.swf',
+  'script'    : '<%= Dropio::Config.upload_url %>',
+  'multi'    : true,
+  'scriptData': {'api_key': '<%=Dropio::Config.api_key%>', 'version':'3.0','drop_name': '<%=@drop.name %>', 'conversion': 'BASE'},
+  'cancelImg' : '/uploadify/cancel.png',
+  'auto'      : true,
+  'onAllComplete' : function(){setTimeout(window.location.reload(),3000);},
+  'folder'    : '/uploads'
+  });
+  });
+  // ]]></script>
 </head>
 <body>
 
@@ -45,96 +45,97 @@
 <%= javascript_include_tag :defaults %>
 
 <div id="assets">
-	<h2>Examining the drop <%= h(@drop.name) %></h2>
-	
-	<h4>Switch to
-	<%= link_to 'media view', drop_path(@drop.name) + '/fancy' %> to see these assets displayed inline</h4>
+  <h2>Examining the drop <%= h(@drop.name) %></h2>
 
-	<br />
-	There are <%= @howmany %> assets in this drop
-		<br />
+  <h4>Switch to
+  <%= link_to 'media view', drop_path(@drop.name) + '/fancy' %> to see these assets displayed inline</h4>
 
-		<ul>
-		<% @assets.map {|a| %>
-			<li>
-			<h3><%= a.name %></h3>
-			<ul>
-			<% a.roles.map {|r| %>
-				<li>Role: <%= h(r["name"]) %>
-					<ul>
-					<% r["locations"].map {|loc| %>
-						<li>Location: <%= h(loc["name"]) %></li>
-						<% if r["name"] == "original_content" %>
-							<% ocurl = "#{Dropio::Config.api_url}/drops/#{@drop.name}/assets/#{a.name}/download/original?api_key=#{Dropio::Config.api_key}&version=3.0#{"&location=" + loc["name"] unless loc["name"] == "DropioS3"}" %>
-							<ul><li><a href="<%=ocurl%>">
-							Direct Download</a> or via 
-							<% cdnout = []
-								@enabled_cdns.map{|cdn|
-								cdnout << "<a href=\"#{ocurl}&via=#{cdn}\">#{cdn}</a>"
-							}%>
-							<%=cdnout.join(", ")%>
-							</li></ul>	
-						<% else %>
-							<% if loc["status"] == "complete" %>
-								<ul><li><a href="<%= loc["file_url"] %>">Direct Download</a> or via 
-								<%
-								 cdnout = []  
-								
-									@enabled_cdns.map{|cdn|
-										cdnout << "<a href=\"#{loc["file_url"]}#{loc["file_url"].index("?") ? '&' : '?'}via=#{cdn}\">#{cdn}</a>"
-									}
-							
-									 %>
-								<%=cdnout.join(", ")%></li></ul>
-							<% else %>
-									<ul><li><%=loc["status"]%></li></ul>
-							<% end%>
-						<% end %>
-					<% } %>
-					</ul>
-				</li>
-			<% } %>
-			</ul>
-			</li>
-		<% } %>
-		</ul>
-	<br /><br />
+  <br />
+  There are <%= @howmany %> assets in this drop
+    <br />
+
+    <ul>
+    <% @assets.map {|a| %>
+      <li>
+      <h3><%= a.name %></h3>
+      <ul>
+      <% a.roles.map {|r| %>
+        <li>Role: <%= h(r["name"]) %>
+          <ul>
+          <% r["locations"].map {|loc| %>
+            <li>Location: <%= h(loc["name"]) %></li>
+            <% if r["name"] == "original_content" %>
+              <% ocurl = "#{Dropio::Config.api_url}/drops/#{@drop.name}/assets/#{a.name}/download/original?api_key=#{Dropio::Config.api_key}&version=3.0#{"&location=" + loc["name"] unless loc["name"] == "DropioS3"}" %>
+              <ul><li><a href="<%=ocurl%>">
+              Direct Download</a> or via
+              <% cdnout = []
+                @enabled_cdns.map{|cdn|
+                cdnout << "<a href=\"#{ocurl}&via=#{cdn}\">#{cdn}</a>"
+              }%>
+              <%=cdnout.join(", ")%>
+              </li></ul>
+            <% else %>
+              <% if loc["status"] == "complete" %>
+                <ul><li><a href="<%= loc["file_url"] %>">Direct Download</a> or via
+                <%
+                 cdnout = []
+
+                  @enabled_cdns.map{|cdn|
+                    cdnout << "<a href=\"#{loc["file_url"]}#{loc["file_url"].index("?") ? '&' : '?'}via=#{cdn}\">#{cdn}</a>"
+                  }
+
+                   %>
+                <%=cdnout.join(", ")%></li></ul>
+              <% else %>
+                  <ul><li><%=loc["status"]%></li></ul>
+              <% end%>
+            <% end %>
+          <% } %>
+          </ul>
+        </li>
+      <% } %>
+      </ul>
+      </li>
+    <% } %>
+    </ul>
+  <br /><br />
 
 </div>
 <script type="text/javascript">
-	function makeol(){
-		//alert('test');
-		var chks = $$("input");
-		var olval = [];
-		chks.each( function( element ) {
-			if(element.type == 'checkbox' && element.checked){
-				//alert(element.value);
-				olval.push(element.value);
-			} 
-		});
-		$("olfield").value = olval.join(",");
-	}
+  function makeol(){
+    //alert('test');
+    var chks = $$("input");
+    var olval = [];
+    chks.each( function( element ) {
+      if(element.type == 'checkbox' && element.checked){
+        //alert(element.value);
+        olval.push(element.value);
+      }
+    });
+    $("olfield").value = olval.join(",");
+  }
 </script>
 <div id="uploader">
-	<h1>File Upload</h1>
-	<form action="<%= Dropio::Config.upload_url %>" enctype="multipart/form-data" method="post">
-	
-	<p><label for="file">Select File</label> : 
-		<input type="file" name="file" id="file" /></p>
-	<input type="hidden" name='api_key' value='<%=Dropio::Config.api_key%>' />
-	<input type="hidden" name='version' value='3.0' />
-	<input type="hidden" name='drop_name' value='<%=@drop.name %>' />
-	<input type="hidden" name='redirect_to' value='<%= "http://" + request.env["HTTP_HOST"]  + request.request_uri %>' />
-	Output Locations: 
-	<% @output_locations.map {|ol| %> 
-		<br />
-		<input type="checkbox" name='output_location[<%= ol %>]' id="" value='<%= ol %>'  onclick="makeol()" <%= "checked" if ol == "DropioS3" %>/>
-		<label for="output_location[<%= ol %>]" ><%= ol %></label>
-		
-	<% } %>
-	<input type="hidden" name='output_locations' value='DropioS3' id='olfield' />
-<br />	<input type="submit" /></form>
-<br />	<br />	<br />	<br />
+  <h1>File Upload</h1>
+  <form action="<%= Dropio::Config.upload_url %>" enctype="multipart/form-data" method="post">
+
+  <p><label for="file">Select File</label> :
+    <input type="file" name="file" id="file" /></p>
+  <input type="hidden" name='api_key' value='<%=Dropio::Config.api_key%>' />
+  <input type="hidden" name='version' value='3.0' />
+  <input type="hidden" name='conversion' value='BASE' />
+  <input type="hidden" name='drop_name' value='<%=@drop.name %>' />
+  <input type="hidden" name='redirect_to' value='<%= "http://" + request.env["HTTP_HOST"]  + request.request_uri %>' />
+  Output Locations:
+  <% @output_locations.map {|ol| %>
+    <br />
+    <input type="checkbox" name='output_location[<%= ol %>]' id="" value='<%= ol %>'  onclick="makeol()" <%= "checked" if ol == "DropioS3" %>/>
+    <label for="output_location[<%= ol %>]" ><%= ol %></label>
+
+  <% } %>
+  <input type="hidden" name='output_locations' value='DropioS3' id='olfield' />
+<br />  <input type="submit" /></form>
+<br />  <br />  <br />  <br />
 
 </div>
 <%= %>
@@ -142,129 +143,129 @@
 <br />
 
 <%= link_to '&laquo back to drops list', drops_path() %>
-	<br />
+  <br />
 <%####################################################################################### %>
 <%###Fancy rendering mode################################################################ %>
 <%####################################################################################### %>
 <% elsif params["viewmode"] == 'fancy' %>
 <style type="text/css">
-	body{background:url('/images/fancybg.png') #dbdbdb repeat-x;}
-	table{border:1px solid #aaaaaa;}
-	table th{border-bottom:1px solid black;}
-	table td{border-bottom:1px solid #cccccc;padding:10px;}
+  body{background:url('/images/fancybg.png') #dbdbdb repeat-x;}
+  table{border:1px solid #aaaaaa;}
+  table th{border-bottom:1px solid black;}
+  table td{border-bottom:1px solid #cccccc;padding:10px;}
 </style>
 <script src='/osflv/AC_RunActiveContent.js' language='javascript'></script>
 
 <div id="assets">
-	<h2 style="font-size:24px">Viewing the contents of "<%= h(@drop.name) %>"</h2>
-	<h4>Switch to 
-	<%= link_to 'detailed view', drop_path(@drop.name) %> to view information about these assets</h4>
-		<br />
-		<table><tr><th width="250">Title & Description</th><th width="400">Preview</th><th width="50">Original file</th></tr>
-		<% @assets.map {|a| 
-			origfile = Dropio::Config.api_url
-			origfile += "/drops/#{@drop.name}/assets/#{a.name}/download/original?api_key=#{Dropio::Config.api_key}"
-			origfile += "&version=3.0"
-			if a.roles.first["locations"].first["name"] != "DropioS3"
-				origfile += "&location=" + a.roles.first["locations"].first["name"]
-			end
-			%>
-			<tr>
-				<td>
-					<strong><%= a.title %></strong>
-					<% if !a.description.nil? %>	
-						<%= "<br />" + h(a.description) %>
-					<% end %>
-				</td>
-				<td>
-					<% 
-					preview = ''
-					if a.type == "image"
-						a.roles.map{|r| 
-							if r["name"] == "thumbnail" 
-								if r["locations"].first["status"] == "complete"
-									preview = "<img src=\"#{r["locations"].first["file_url"]}\" alt="">"
-								end
-							end
-						}
-					elsif a.type == "audio"
-						if a.roles.first["locations"].first["status"] == "complete"
-							#preview = '<embed type="application/x-shockwave-flash" src="http://www.google.com/reader/ui/3247397568-audio-player.swf?audioUrl='
-							#preview += CGI::escape origfile
-							#preview += '" width="400" height="27" allowscriptaccess="never" quality="best" bgcolor="#ffffff" wmode="window" flashvars="playerMode=embedded" />'
-							
-							preview = '<object type="application/x-shockwave-flash" 
-							data="/wpaudio/player.swf" id="'
-							preview += 'ap-' + a.name
-							preview += '" height="24" width="290">
-							<param name="movie" value="/wpaudio/player.swf">
-							<param name="FlashVars" value="playerID='
-							preview += 'ap-' + a.name
-							preview += '&soundFile='
-							preview += CGI::escape origfile
-							preview += '">
-							<param name="quality" value="high">
-							<param name="menu" value="false">
-							<param name="wmode" value="transparent">
-							</object>'
-							#preview += a.inspect
-						end
-					elsif a.type == "movie"
-						flv = ''
-						a.roles.map{|r| 
-							if r["name"] == "web_preview" 
-								if r["locations"].first["status"] == "complete"
-									flv = r["locations"].first["file_url"]
-									preview = "<object width='400' height='325' id='flvPlayer'>
-									  <param name='allowFullScreen' value='true'>
-									  <param name='movie' value='/osflv/OSplayer.swf?movie=#{CGI::escape flv}&btncolor=0x333333&accentcolor=0x31b8e9&txtcolor=0xdddddd&volume=30&previewimage=&autoload=off&vTitle=Super Mario Brothers Lego Edition&showTitle=yes'>
-									  <embed src='/osflv/OSplayer.swf?movie=#{CGI::escape flv}&btncolor=0x333333&accentcolor=0x31b8e9&txtcolor=0xdddddd&volume=30&previewimage=&autoload=off&vTitle=Super Mario Brothers Lego Edition&showTitle=yes' width='400' height='325' allowFullScreen='true' type='application/x-shockwave-flash'>
-									 </object>"
-								end
-							end
-						}
-					elsif a.type == "document"
-						a.roles.map{|r| 
-							if r["name"] == "web_preview"
-								if r["locations"].first["status"] == "complete"
-									docurl = r["locations"].first["file_url"]
-									preview += "<iframe style='width:600px;height:300px' frameborder='0' src=\"http://docs.google.com/viewer?embedded=true&url=#{CGI::escape docurl}\"></iframe>"
-								end
-							end
-						}
-					else
-						preview = "<a href='#{origfile}'><img src='/images/downloaddisk.png' style='border:none' alt='download'/></a>"
-						#preview = h(a.inspect)
-					end 
-					%>
-					<%= preview %>
-				</td>
-				<td><a href="<%= origfile %>">link</a></td>
-			</tr>
-		<% } %>
-		</table>
-	<br /><br />
+  <h2 style="font-size:24px">Viewing the contents of "<%= h(@drop.name) %>"</h2>
+  <h4>Switch to
+  <%= link_to 'detailed view', drop_path(@drop.name) %> to view information about these assets</h4>
+    <br />
+    <table><tr><th width="250">Title & Description</th><th width="400">Preview</th><th width="50">Original file</th></tr>
+    <% @assets.map {|a|
+      origfile = Dropio::Config.api_url
+      origfile += "/drops/#{@drop.name}/assets/#{a.name}/download/original?api_key=#{Dropio::Config.api_key}"
+      origfile += "&version=3.0"
+      if a.roles.first["locations"].first["name"] != "DropioS3"
+        origfile += "&location=" + a.roles.first["locations"].first["name"]
+      end
+      %>
+      <tr>
+        <td>
+          <strong><%= a.title %></strong>
+          <% if !a.description.nil? %>
+            <%= "<br />" + h(a.description) %>
+          <% end %>
+        </td>
+        <td>
+          <%
+          preview = ''
+          if a.type == "image"
+            a.roles.map{|r|
+              if r["name"] == "thumbnail"
+                if r["locations"].first["status"] == "complete"
+                  preview = "<img src=\"#{r["locations"].first["file_url"]}\" alt="">"
+                end
+              end
+            }
+          elsif a.type == "audio"
+            if a.roles.first["locations"].first["status"] == "complete"
+              #preview = '<embed type="application/x-shockwave-flash" src="http://www.google.com/reader/ui/3247397568-audio-player.swf?audioUrl='
+              #preview += CGI::escape origfile
+              #preview += '" width="400" height="27" allowscriptaccess="never" quality="best" bgcolor="#ffffff" wmode="window" flashvars="playerMode=embedded" />'
+
+              preview = '<object type="application/x-shockwave-flash"
+              data="/wpaudio/player.swf" id="'
+              preview += 'ap-' + a.name
+              preview += '" height="24" width="290">
+              <param name="movie" value="/wpaudio/player.swf">
+              <param name="FlashVars" value="playerID='
+              preview += 'ap-' + a.name
+              preview += '&soundFile='
+              preview += CGI::escape origfile
+              preview += '">
+              <param name="quality" value="high">
+              <param name="menu" value="false">
+              <param name="wmode" value="transparent">
+              </object>'
+              #preview += a.inspect
+            end
+          elsif a.type == "movie"
+            flv = ''
+            a.roles.map{|r|
+              if r["name"] == "web_preview"
+                if r["locations"].first["status"] == "complete"
+                  flv = r["locations"].first["file_url"]
+                  preview = "<object width='400' height='325' id='flvPlayer'>
+                    <param name='allowFullScreen' value='true'>
+                    <param name='movie' value='/osflv/OSplayer.swf?movie=#{CGI::escape flv}&btncolor=0x333333&accentcolor=0x31b8e9&txtcolor=0xdddddd&volume=30&previewimage=&autoload=off&vTitle=Super Mario Brothers Lego Edition&showTitle=yes'>
+                    <embed src='/osflv/OSplayer.swf?movie=#{CGI::escape flv}&btncolor=0x333333&accentcolor=0x31b8e9&txtcolor=0xdddddd&volume=30&previewimage=&autoload=off&vTitle=Super Mario Brothers Lego Edition&showTitle=yes' width='400' height='325' allowFullScreen='true' type='application/x-shockwave-flash'>
+                   </object>"
+                end
+              end
+            }
+          elsif a.type == "document"
+            a.roles.map{|r|
+              if r["name"] == "web_preview"
+                if r["locations"].first["status"] == "complete"
+                  docurl = r["locations"].first["file_url"]
+                  preview += "<iframe style='width:600px;height:300px' frameborder='0' src=\"http://docs.google.com/viewer?embedded=true&url=#{CGI::escape docurl}\"></iframe>"
+                end
+              end
+            }
+          else
+            preview = "<a href='#{origfile}'><img src='/images/downloaddisk.png' style='border:none' alt='download'/></a>"
+            #preview = h(a.inspect)
+          end
+          %>
+          <%= preview %>
+        </td>
+        <td><a href="<%= origfile %>">link</a></td>
+      </tr>
+    <% } %>
+    </table>
+  <br /><br />
 
 </div>
 <script type="text/javascript">
-	function makeol(){
-		//alert('test');
-		var chks = $$("input");
-		var olval = [];
-		chks.each( function( element ) {
-			if(element.type == 'checkbox' && element.checked){
-				//alert(element.value);
-				olval.push(element.value);
-			} 
-		});
-		$("olfield").value = olval.join(",");
-	}
+  function makeol(){
+    //alert('test');
+    var chks = $$("input");
+    var olval = [];
+    chks.each( function( element ) {
+      if(element.type == 'checkbox' && element.checked){
+        //alert(element.value);
+        olval.push(element.value);
+      }
+    });
+    $("olfield").value = olval.join(",");
+  }
 </script>
 <div id="uploader" style="background:#ffffff;-moz-border-radius:20px;-webkit-border-radius:20px;width:660px;padding:10px 20px 20px 20px;margin-top:30px">
-	<h1>Upload a new file to this drop</h1>
-	
-	<input id="file" name="file" type="file" />
-	
+  <h1>Upload a new file to this drop</h1>
+
+  <input id="file" name="file" type="file" />
+
 </div>
 
 <% end %>
