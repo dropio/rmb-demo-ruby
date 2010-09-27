@@ -31,13 +31,13 @@
     <input type='submit' />
   </form>
   <form action='/drops/create' method='post'>
-    <input name='dropname' type='hidden' value='random' />
+    <input name='dropname' type='hidden' value="<%= Digest::SHA1.hexdigest(Time.now.to_s)[0..9] %>" />
     <input type='submit' value='Generate Random Drop' />
   </form>
   <% unless @drops.nil? %>
     <h2>Your Drops</h2>
     <div>
-      <% @drops.reverse.each do |drop| %>
+      <% @drops.each do |drop| %>
         <div class='dropname'>
           <a href='/drops/<%= drop.name %>' title='View <%= drop.name %>'><%= drop.name %></a>
         </div>

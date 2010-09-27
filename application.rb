@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'dropio'
 require 'rack-flash'
+require 'digest/sha1'
 
 configure do
   CONFIG = YAML.load_file(
