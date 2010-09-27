@@ -53,9 +53,9 @@
       <tr>
         <td>
           <% if asset.type == "image" %>
-            <img src="<%= asset.roles.select { |role| 
-              role["name"] == "small_thumbnail" }.first["locations"].first["file_url"]
-            %>" />
+            <img src="<%= asset.roles.select{ |role| role["name"] == "large_thumbnail" }.first['locations'].first['file_url'] %>" />
+          <% else %>
+            <%= asset.filename %>
           <% end %>
         </td>
         <td><%= asset.name %></td>
