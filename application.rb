@@ -23,8 +23,23 @@ get '/' do
   erb :'drops/index'
 end
 
+helpers do
+  def show_large_thumbnail(asset)
+    large_thumbnail = lambda do
+      asset.roles.select{ |role| role["name"] == "large_thumbnail"}
+    end.call.first['locations']
+    begin
+      if asset.type == "image" and large_thumbnail.first["status"] == "complete"
+        "<img src='#{large_thumbnail.first['file_url']}' />"
+      end
+    rescue Exception
+    end
+  end
+end
+
 get '/drops/:name/?' do
   @redirect_url = request.url
+
   begin
     @drop = Dropio::Drop.find(params[:name])
     @assets = @drop.assets
