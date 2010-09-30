@@ -25,17 +25,17 @@ end
 
 helpers do
   def show_large_thumbnail(asset)
-    if asset.type == "image"
-      large_thumbnail = lambda do
-        asset.roles.select{ |role| role["name"] == "large_thumbnail" }
-      end.call.first['locations']
-      begin
+    begin
+      if asset.type == "image"
+        large_thumbnail = lambda do
+          asset.roles.select{ |role| role["name"] == "large_thumbnail" }
+        end.call.first['locations']
         if large_thumbnail.first["status"] == "complete"
           "<img src='#{large_thumbnail.first['file_url']}' />"
         end
-      rescue Exception => e
-        puts "Caught exception: #{e}"
       end
+    rescue Exception => e
+      puts "Caught exception: #{e}"
     end
   end
 end
