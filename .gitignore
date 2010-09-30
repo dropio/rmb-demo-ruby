@@ -6,6 +6,8 @@
 *.swp
 ._*
 
+tmp/*
+
 # ignore log files, ignore output files, ignore pidfiles
 *.log
 *.output
