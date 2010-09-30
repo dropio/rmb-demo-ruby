@@ -11,7 +11,7 @@
       <input name='redirect_to' type='hidden' value='<%= @redirect_url %>' />
       <input name='timestamp' type='hidden' value='<%= (Time.now.to_i + 900).to_s %>' />
       <input name='conversion' type='hidden' value='BASE'>
-      <input type='hidden' version='3.0' />
+      <input name='version' type='hidden' value='3.0' />
       <input type='submit' value='submit' />
     </li>
   </ul>
