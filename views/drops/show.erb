@@ -56,7 +56,9 @@
         <td>
           <%= show_large_thumbnail(asset) %>
         </td>
-        <td><%= asset.name %></td>
+        <td>
+          <%= asset.name %>
+        </td>
         <td>
           <a href="/drops/<%= @drop.name %>/assets/<%= asset.id %>/delete" class="delete">Delete</a>
         </td>
