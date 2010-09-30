@@ -5,14 +5,9 @@ require 'rack-flash'
 require 'digest/sha1'
 
 configure do
-  CONFIG = YAML.load_file(
-    File.expand_path(File.dirname(__FILE__) + '/config.yml')
-  )
+  CONFIG = YAML.load_file(File.expand_path(File.dirname(__FILE__) + '/config.yml'))
 
   Dropio::Config.api_key = CONFIG['api_key']
-  Dropio::Config.base_url = "http://stage-release.drop.io"
-  Dropio::Config.api_url = "http://stage-release-api.drop.io"
-  Dropio::Config.upload_url = "http://stage-release-assets.drop.io/upload"
 
   # Only needed for secure keys
   # Dropio::Config.api_secret = CONFIG['api_secret']

@@ -34,7 +34,7 @@
     <input name='dropname' type='hidden' value="<%= Digest::SHA1.hexdigest(Time.now.to_s)[0..9] %>" />
     <input type='submit' value='Generate Random Drop' />
   </form>
-  <% unless @drops.nil? %>
+  <% unless @drops.empty? %>
     <h2>Your Drops</h2>
     <div>
       <% @drops.each do |drop| %>
