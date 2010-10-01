@@ -18,3 +18,4 @@ This is a small application written in Ruby using the Sinatra web framework demo
 * If using a secure key, uncomment line 12 in `application.rb`.
 * Run `bundle install` from within this project's directory to install the dependencies.
 * Run `rackup` to start the application with your default web server.
+
