@@ -10,7 +10,7 @@ configure do
   Dropio::Config.api_key = CONFIG['api_key']
 
   # Uncomment to enable Dropio logging
-  Dropio::Config.debug = true
+  # Dropio::Config.debug = true
 
   API_KEY = Dropio::Config.api_key
 
