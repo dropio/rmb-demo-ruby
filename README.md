@@ -22,4 +22,3 @@ This is a small application written in Ruby using the Sinatra web framework demo
 ### Live Demo
 
 A live version of this demo application might be available for viewing here: <http://rmb-simple-demo.heroku.com/>
-
