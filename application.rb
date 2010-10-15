@@ -1,25 +1,25 @@
 require 'rubygems'
 require 'sinatra'
-require 'dropio'
+require 'rmb'
 require 'rack-flash'
 require 'digest/sha1'
 
 configure do
   CONFIG = YAML.load_file(File.expand_path(File.dirname(__FILE__) + '/config.yml'))
 
-  Dropio::Config.api_key = CONFIG['api_key']
+  Rmb::Config.api_key = CONFIG['api_key']
 
-  # Uncomment to enable Dropio logging
-  # Dropio::Config.debug = true
+  # Uncomment to enable Rmb logging
+  Rmb::Config.debug = true
 
-  API_KEY = Dropio::Config.api_key
+  API_KEY = Rmb::Config.api_key
 
   enable :sessions
   use Rack::Flash, :sweep => true
 end
 
 get '/' do
-  @drops = Dropio::Drop.find_all
+  @drops = Rmb::Drop.find_all
   erb :'drops/index'
 end
 
@@ -44,16 +44,16 @@ get '/drops/:name/?' do
   @redirect_url = request.url
 
   begin
-    @drop = Dropio::Drop.find(params[:name])
+    @drop = Rmb::Drop.find(params[:name])
     @assets = @drop.assets
     erb :'drops/show'
-  rescue Dropio::MissingResourceError => e
+  rescue Rmb::MissingResourceError => e
     "#{e}"
   end
 end
 
 get '/drops/:name/delete/?' do
-  @drop = Dropio::Drop.find(params[:name])
+  @drop = Rmb::Drop.find(params[:name])
   @drop.destroy!
   flash[:notice] = "Drop was successfully deleted."
   redirect '/'
@@ -61,14 +61,14 @@ end
 
 post '/drops/create' do
   @dropname = params[:dropname]
-  @drop = Dropio::Drop.create({:name => @dropname})
+  @drop = Rmb::Drop.create({:name => @dropname})
   flash[:notice] = "Drop was successfully created."
   redirect '/'
 end
 
 get '/drops/:drop/assets/:asset/delete/?' do
-  @drop = Dropio::Drop.find(params[:drop])
-  @asset = Dropio::Asset.find(@drop, params[:asset])
+  @drop = Rmb::Drop.find(params[:drop])
+  @asset = Rmb::Asset.find(@drop, params[:asset])
   @asset.destroy!
   flash[:notice] = "Asset was sucessfully deleted."
   redirect "/drops/#{params[:drop]}"

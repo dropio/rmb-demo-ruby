@@ -1,5 +1,5 @@
 <h1>Assets for Drop '<%= @drop.name %>'</h1>
-<form action='http://assets.drop.io/upload' enctype='multipart/form-data' method='post'>
+<form action='<%= Rmb::Config.upload_url %>' enctype='multipart/form-data' method='post'>
   <ul>
     <li>
       <label for='file'>Add a new file:</label>
@@ -22,7 +22,7 @@
   $(document).ready(function() {
     $('#file').uploadify({
       'uploader'  : '/utils/uploadify/uploadify.swf',
-      'script'    : 'http://assets.drop.io/upload',
+      'script'    : '<%= Rmb::Config.upload_url %>',
       'multi'     : true,
       'scriptData': {
         "api_key"     :'<%= API_KEY %>',
@@ -34,7 +34,7 @@
       },
       'cancelImg' : '/utils/uploadify/cancel.png',
       'auto'      : true,
-      'onAllComplete' : function(){
+      'onAllComplete' : function() {
         setTimeout(window.location = '<%= request.url %>', 1000);
       },
       'onError'   : function(e, q, f, o) { alert("ERROR: " + o.info + o.type); },
