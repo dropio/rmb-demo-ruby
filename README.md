@@ -1,4 +1,4 @@
-# Drop.io Rich Media Backbone Ruby demo application
+# RMB Simple Ruby Demo Application
 
 ## Overview
 
