@@ -10,7 +10,7 @@ configure do
   Rmb::Config.api_key = CONFIG['api_key']
 
   # Uncomment to enable Rmb logging
-  Rmb::Config.debug = true
+  # Rmb::Config.debug = true
 
   API_KEY = Rmb::Config.api_key
 
