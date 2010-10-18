@@ -3,7 +3,8 @@
 .DS_Store
 +*#
 .#*
-*.sw*
+*.swp
+*.swo
 ._*
 
 tmp/*
