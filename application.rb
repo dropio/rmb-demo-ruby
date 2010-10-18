@@ -19,7 +19,8 @@ get '/drops/:name/?' do
     @assets = @drop.assets
     erb :'drops/show'
   rescue Rmb::MissingResourceError => e
-    "#{e}"
+    flash[:notice] = "#{e}"
+    redirect '/'
   end
 end
 
