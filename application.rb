@@ -3,41 +3,12 @@ require 'sinatra'
 require 'rmb'
 require 'rack-flash'
 require 'digest/sha1'
-
-configure do
-  CONFIG = YAML.load_file(File.expand_path(File.dirname(__FILE__) + '/config.yml'))
-
-  Rmb::Config.api_key = CONFIG['api_key']
-
-  # Uncomment to enable Rmb logging
-  # Rmb::Config.debug = true
-
-  API_KEY = Rmb::Config.api_key
-
-  enable :sessions
-  use Rack::Flash, :sweep => true
-end
+require 'initializer'
+include Initializer
 
 get '/' do
   @drops = Rmb::Drop.find_all
   erb :'drops/index'
-end
-
-helpers do
-  def show_large_thumbnail(asset)
-    begin
-      if asset.type == "image"
-        large_thumbnail = lambda do
-          asset.roles.select{ |role| role["name"] == "large_thumbnail" }
-        end.call.first['locations']
-        if large_thumbnail.first["status"] == "complete"
-          "<img src='#{large_thumbnail.first['file_url']}' />"
-        end
-      end
-    rescue Exception => e
-      puts "Caught exception: #{e}"
-    end
-  end
 end
 
 get '/drops/:name/?' do

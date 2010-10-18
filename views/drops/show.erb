@@ -12,6 +12,11 @@
       <input name='timestamp' type='hidden' value='<%= (Time.now.to_i + 900).to_s %>' />
       <input name='conversion' type='hidden' value='BASE'>
       <input name='version' type='hidden' value='3.0' />
+      <input name='format' type='hidden' value='json' />
+      <% if API_SECRET %>
+        <input name='signature' type='hidden' value='<%= signature %>' />
+        <input name='signature_mode' type='hidden' value='OPEN' />
+      <% end %>
       <input type='submit' value='submit' />
     </li>
   </ul>
@@ -25,12 +30,16 @@
       'script'    : '<%= Rmb::Config.upload_url %>',
       'multi'     : true,
       'scriptData': {
-        "api_key"     :'<%= API_KEY %>',
-        "drop_name"   :'<%= @drop.name %>',
-        "format"      :"json",
-        "timestamp"   :'<%= (Time.now.to_i + 900).to_s %>',
-        "conversion"  :'BASE',
-        "version"     :"3.0"
+        "api_key"        : '<%= API_KEY %>',
+        "drop_name"      : '<%= @drop.name %>',
+        "timestamp"      : '<%= (Time.now.to_i + 900).to_s %>',
+        "conversion"     : 'BASE',
+        "version"        : '3.0',
+        "format"         : 'json'
+        <% if API_SECRET %>
+          , "signature"      : '<%= signature %>'
+          , "signature_mode" : 'OPEN'
+        <% end %>
       },
       'cancelImg' : '/utils/uploadify/cancel.png',
       'auto'      : true,
@@ -42,19 +51,19 @@
     });
   });
 </script>
-<input type="file" name="fileUpload" id="file"/>
+<input type="file" name="fileUpload" id="file" />
 <% if flash[:notice] %>
   <div id="message">
     <%= flash[:notice] %>
   </div>
 <% end %>
 <% unless @assets.empty? %>
- <h2>Files in this drop</h2>
+  <h2>Files in this drop</h2>
   <table>
     <% @assets.each do |asset| %>
       <tr>
         <td>
-          <%= show_large_thumbnail(asset) %>
+          <%= large_thumbnail(asset) %>
         </td>
         <td>
           <%= asset.name %>
