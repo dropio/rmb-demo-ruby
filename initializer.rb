@@ -21,6 +21,11 @@ module Initializer
     @api = Rmb::Api.new
   end
 
+  not_found do
+    flash[:notice] = "Sorry. That was nowhere to be found."
+    redirect '/'
+  end
+
   helpers do
     def large_thumbnail(asset)
       begin
