@@ -15,10 +15,10 @@ This is a small application written in Ruby using the Sinatra web framework demo
 **Installation:**
 
 * Edit `config.yml` to include your API key (and optionally your API secret if using a secure key).
-* If using a secure key, uncomment line 12 in `application.rb`.
+* If using a secure key, uncomment line 8 in `initializer.rb` (this will also enable signed uploads).
 * Run `bundle install` from within this project's directory to install the dependencies. `(sudo) gem install bundler` if you haven't already.
 * Run `rackup` to start the application with your default web server.
 
 ### Live Demo
 
-A live version of this demo application might be available for viewing here: <http://rmb-simple-demo.heroku.com/>
+A live version of this demo application might be available for viewing here: <http://rmb-demo-ruby.heroku.com/>
